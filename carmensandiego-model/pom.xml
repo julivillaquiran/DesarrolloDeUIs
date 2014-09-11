@@ -10,4 +10,13 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>carmensandiego-model</name>
   <description>Modelado del juego "Donde esta Carmen Sandiego".</description>
+  
+  <dependencies>
+		<dependency>
+			<groupId>org.uqbar-project</groupId>
+			<artifactId>arena-jface</artifactId>
+			<version>3.3-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+  
 </project>

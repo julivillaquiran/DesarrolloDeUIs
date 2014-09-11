@@ -1,0 +1,5 @@
+package appmodel
+
+class WorldMapAppModel {
+	
+}
