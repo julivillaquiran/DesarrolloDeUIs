@@ -18,4 +18,9 @@ public class CreateVillainApplication extends Application {
     }
     return _xblockexpression;
   }
+  
+  public static void main(final String[] args) {
+    CreateVillainApplication _createVillainApplication = new CreateVillainApplication();
+    _createVillainApplication.start();
+  }
 }

@@ -12,7 +12,9 @@ class CreateVillainAppModel {
 	@Property
 	Villain villain
 	
-
+	@Property
+	Hobbie newHobbie
+	
 	@Property
 	GameSystem gameSystem
 	
@@ -24,6 +26,10 @@ class CreateVillainAppModel {
 	
 	def addVillain(){
 		gameSystem.addVillains(villain)
+	}
+	
+	def void addHobbie() {
+		villain.addHobbies(newHobbie)
 	}
 	
 	def getGender(){

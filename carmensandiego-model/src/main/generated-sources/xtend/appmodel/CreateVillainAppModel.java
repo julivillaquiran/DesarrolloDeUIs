@@ -21,6 +21,16 @@ public class CreateVillainAppModel {
     this._villain = villain;
   }
   
+  private Hobbie _newHobbie;
+  
+  public Hobbie getNewHobbie() {
+    return this._newHobbie;
+  }
+  
+  public void setNewHobbie(final Hobbie newHobbie) {
+    this._newHobbie = newHobbie;
+  }
+  
   private GameSystem _gameSystem;
   
   public GameSystem getGameSystem() {
@@ -41,6 +51,12 @@ public class CreateVillainAppModel {
     GameSystem _gameSystem = this.getGameSystem();
     Villain _villain = this.getVillain();
     _gameSystem.addVillains(_villain);
+  }
+  
+  public void addHobbie() {
+    Villain _villain = this.getVillain();
+    Hobbie _newHobbie = this.getNewHobbie();
+    _villain.addHobbies(_newHobbie);
   }
   
   public List<Gender> getGender() {

@@ -13,8 +13,8 @@ class CreateVillainApplication extends Application{
 		new CreateVillainWindow(this, model) 
 	}
 	
-//	def static void main(String[] args) {
-//		new CreateVillainApplication().start()
-//	}
+	def static void main(String[] args) {
+		new CreateVillainApplication().start()
+	}
 	
 }

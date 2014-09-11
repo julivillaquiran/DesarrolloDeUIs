@@ -37,4 +37,8 @@ public class GameSystemAppModel {
   public void setFilesWindowAppModel(final FilesWindowAppModel filesWindowAppModel) {
     this._filesWindowAppModel = filesWindowAppModel;
   }
+  
+  public GameSystemAppModel(final GameSystem gameSystem) {
+    this.setGameSystem(gameSystem);
+  }
 }

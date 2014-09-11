@@ -3,6 +3,7 @@ package view;
 import appmodel.FilesWindowAppModel;
 import appmodel.GameSystemAppModel;
 import appmodel.WorldMapAppModel;
+import model.GameSystem;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.uqbar.arena.layout.HorizontalLayout;
@@ -46,7 +47,9 @@ public class GameSystemWindow extends SimpleWindow<GameSystemAppModel> {
         it.setCaption("Expedientes");
         final Action _function = new Action() {
           public void execute() {
-            FilesWindowAppModel _filesWindowAppModel = new FilesWindowAppModel();
+            GameSystemAppModel _modelObject = GameSystemWindow.this.getModelObject();
+            GameSystem _gameSystem = _modelObject.getGameSystem();
+            FilesWindowAppModel _filesWindowAppModel = new FilesWindowAppModel(_gameSystem);
             FilesWindow _filesWindow = new FilesWindow(GameSystemWindow.this, _filesWindowAppModel);
             _filesWindow.open();
           }

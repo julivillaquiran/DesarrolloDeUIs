@@ -22,16 +22,14 @@ class Villain {
 	@Property
 	List<Hobbie> hobbies = newArrayList
 	
-	@Property
-	Hobbie newHobbie
 	
 	
-	def void addHobbie() {
+	def void addHobbies(Hobbie newHobbie) {
 		hobbies.add(newHobbie)
 		ObservableUtils.firePropertyChanged(this,"hobbies", hobbies)
 	}
 	
-	def void saddNewSign(){
+	def void addNewSign(String newSign){
 		signs.add(newSign)
 		ObservableUtils.firePropertyChanged(this,"signs", signs)
 	}

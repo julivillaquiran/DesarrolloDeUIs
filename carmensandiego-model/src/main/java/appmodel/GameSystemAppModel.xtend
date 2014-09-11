@@ -16,4 +16,8 @@ class GameSystemAppModel {
 	@Property
 	FilesWindowAppModel filesWindowAppModel
 	
+	new(GameSystem gameSystem){
+		this.gameSystem = gameSystem
+	}
+	
 }

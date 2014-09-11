@@ -60,28 +60,16 @@ public class Villain {
     this._hobbies = hobbies;
   }
   
-  private Hobbie _newHobbie;
-  
-  public Hobbie getNewHobbie() {
-    return this._newHobbie;
-  }
-  
-  public void setNewHobbie(final Hobbie newHobbie) {
-    this._newHobbie = newHobbie;
-  }
-  
-  public void addHobbie() {
+  public void addHobbies(final Hobbie newHobbie) {
     List<Hobbie> _hobbies = this.getHobbies();
-    Hobbie _newHobbie = this.getNewHobbie();
-    _hobbies.add(_newHobbie);
+    _hobbies.add(newHobbie);
     List<Hobbie> _hobbies_1 = this.getHobbies();
     ObservableUtils.firePropertyChanged(this, "hobbies", _hobbies_1);
   }
   
-  public void saddNewSign() {
+  public void addNewSign(final String newSign) {
     List<String> _signs = this.getSigns();
-    String _newSign = this.getNewSign();
-    _signs.add(_newSign);
+    _signs.add(newSign);
     List<String> _signs_1 = this.getSigns();
     ObservableUtils.firePropertyChanged(this, "signs", _signs_1);
   }

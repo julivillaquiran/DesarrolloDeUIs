@@ -43,21 +43,21 @@ class CreateVillainWindow extends SimpleWindow<CreateVillainAppModel> {
 		]
 		new Selector(mainPanel) => [
 			bindItemsToProperty("hobbies")
-			bindValueToProperty("villain.newHobbie")
+			bindValueToProperty("newHobbie")
 		]
 		
 		new Button(mainPanel)=>[
 			caption = "Nuevo Hobbie"
-			onClick = [| modelObject.villain.addHobbie ]
+			onClick = [| modelObject.addHobbie ]
 //			onClick = [ | new NewHobbieWindow(this, this.modelObject.villainAppModel).open ]
 		]
 		
 		
 		new Label(mainPanel).text="Señas:"
-		new TextBox(mainPanel)=>[
-			bindValueToProperty("villain.signs")
-			width=200
-		]
+//		new TextBox(mainPanel)=>[
+//			bindValueToProperty("villain.signs")
+//			width=200
+//		]
 		
 		new Label(mainPanel).text="Files:"
 		new List(mainPanel) => [

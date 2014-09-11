@@ -23,16 +23,12 @@ class GameSystemWindow extends SimpleWindow<GameSystemAppModel> {
 		new Button(actionsPanel)=>[
 			caption = "Mapamundi"
 			onClick = [ | new WorldMapWindow(this, new WorldMapAppModel).open
-				//this.modelObject.addVillain
-				//this.close
 			]
 		]
 		
 		new Button(actionsPanel)=>[
 			caption = "Expedientes"
-			onClick = [ | new FilesWindow(this, new FilesWindowAppModel).open
-				//this.modelObject.addVillain
-				//this.close
+			onClick = [ | new FilesWindow(this, new FilesWindowAppModel(modelObject.gameSystem)).open
 			]
 		]
 	}

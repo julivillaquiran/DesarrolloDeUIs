@@ -1,7 +1,6 @@
 package view;
 
 import appmodel.CreateVillainAppModel;
-import model.Villain;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.uqbar.arena.layout.VerticalLayout;
@@ -62,7 +61,7 @@ public class CreateVillainWindow extends SimpleWindow<CreateVillainAppModel> {
     final Procedure1<Selector<Object>> _function_3 = new Procedure1<Selector<Object>>() {
       public void apply(final Selector<Object> it) {
         it.bindItemsToProperty("hobbies");
-        it.<Object, ControlBuilder>bindValueToProperty("villain.newHobbie");
+        it.<Object, ControlBuilder>bindValueToProperty("newHobbie");
       }
     };
     ObjectExtensions.<Selector<Object>>operator_doubleArrow(_selector_1, _function_3);
@@ -73,8 +72,7 @@ public class CreateVillainWindow extends SimpleWindow<CreateVillainAppModel> {
         final Action _function = new Action() {
           public void execute() {
             CreateVillainAppModel _modelObject = CreateVillainWindow.this.getModelObject();
-            Villain _villain = _modelObject.getVillain();
-            _villain.addHobbie();
+            _modelObject.addHobbie();
           }
         };
         it.onClick(_function);
@@ -83,25 +81,17 @@ public class CreateVillainWindow extends SimpleWindow<CreateVillainAppModel> {
     ObjectExtensions.<Button>operator_doubleArrow(_button, _function_4);
     Label _label_3 = new Label(mainPanel);
     _label_3.setText("Señas:");
-    TextBox _textBox_1 = new TextBox(mainPanel);
-    final Procedure1<TextBox> _function_5 = new Procedure1<TextBox>() {
-      public void apply(final TextBox it) {
-        it.<Object, ControlBuilder>bindValueToProperty("villain.signs");
-        it.setWidth(200);
-      }
-    };
-    ObjectExtensions.<TextBox>operator_doubleArrow(_textBox_1, _function_5);
     Label _label_4 = new Label(mainPanel);
     _label_4.setText("Files:");
     List<Object> _list_1 = new List<Object>(mainPanel);
-    final Procedure1<List<Object>> _function_6 = new Procedure1<List<Object>>() {
+    final Procedure1<List<Object>> _function_5 = new Procedure1<List<Object>>() {
       public void apply(final List<Object> it) {
         it.bindItemsToProperty("gameSystem.files");
       }
     };
-    ObjectExtensions.<List<Object>>operator_doubleArrow(_list_1, _function_6);
+    ObjectExtensions.<List<Object>>operator_doubleArrow(_list_1, _function_5);
     Button _button_1 = new Button(mainPanel);
-    final Procedure1<Button> _function_7 = new Procedure1<Button>() {
+    final Procedure1<Button> _function_6 = new Procedure1<Button>() {
       public void apply(final Button it) {
         it.setCaption("Aceptar");
         final Action _function = new Action() {
@@ -113,6 +103,6 @@ public class CreateVillainWindow extends SimpleWindow<CreateVillainAppModel> {
         it.onClick(_function);
       }
     };
-    ObjectExtensions.<Button>operator_doubleArrow(_button_1, _function_7);
+    ObjectExtensions.<Button>operator_doubleArrow(_button_1, _function_6);
   }
 }
