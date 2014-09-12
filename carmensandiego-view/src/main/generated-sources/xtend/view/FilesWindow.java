@@ -3,24 +3,25 @@ package view;
 import appmodel.CreateVillainAppModel;
 import appmodel.FilesWindowAppModel;
 import model.GameSystem;
-import model.Hobbie;
-import model.Villain;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
+import org.uqbar.arena.bindings.PropertyAdapter;
 import org.uqbar.arena.layout.ColumnLayout;
 import org.uqbar.arena.layout.VerticalLayout;
 import org.uqbar.arena.widgets.Button;
-import org.uqbar.arena.widgets.Control;
 import org.uqbar.arena.widgets.Label;
 import org.uqbar.arena.widgets.List;
 import org.uqbar.arena.widgets.Panel;
-import org.uqbar.arena.widgets.tables.Table;
+import org.uqbar.arena.widgets.Selector;
 import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 import org.uqbar.lacar.ui.model.Action;
 import org.uqbar.lacar.ui.model.ControlBuilder;
+import org.uqbar.lacar.ui.model.ListBuilder;
 import org.uqbar.lacar.ui.model.bindings.Binding;
-import view.CreateVillainWindow;
+import villain.Hobbie;
+import villain.Villain;
+import villainView.CreateVillainWindow;
 
 @SuppressWarnings("all")
 public class FilesWindow extends SimpleWindow<FilesWindowAppModel> {
@@ -57,7 +58,10 @@ public class FilesWindow extends SimpleWindow<FilesWindowAppModel> {
       final Procedure1<List<Villain>> _function = new Procedure1<List<Villain>>() {
         public void apply(final List<Villain> it) {
           it.<Object, ControlBuilder>bindValueToProperty("selectedVillain");
-          it.bindItemsToProperty("gameSystem.files");
+          Binding<?, Selector<Villain>, ListBuilder<Villain>> _bindItemsToProperty = it.bindItemsToProperty("gameSystem.files");
+          PropertyAdapter _propertyAdapter = new PropertyAdapter(Villain.class, "name");
+          _bindItemsToProperty.setAdapter(_propertyAdapter);
+          it.setHeight(175);
         }
       };
       ObjectExtensions.<List<Villain>>operator_doubleArrow(_list, _function);
@@ -69,7 +73,9 @@ public class FilesWindow extends SimpleWindow<FilesWindowAppModel> {
             public void execute() {
               FilesWindowAppModel _modelObject = FilesWindow.this.getModelObject();
               GameSystem _gameSystem = _modelObject.getGameSystem();
-              CreateVillainAppModel _createVillainAppModel = new CreateVillainAppModel(_gameSystem);
+              FilesWindowAppModel _modelObject_1 = FilesWindow.this.getModelObject();
+              Villain _selectedVillain = _modelObject_1.getSelectedVillain();
+              CreateVillainAppModel _createVillainAppModel = new CreateVillainAppModel(_gameSystem, _selectedVillain, false);
               CreateVillainWindow _createVillainWindow = new CreateVillainWindow(FilesWindow.this, _createVillainAppModel);
               _createVillainWindow.open();
             }
@@ -84,7 +90,13 @@ public class FilesWindow extends SimpleWindow<FilesWindowAppModel> {
           it.setCaption("Editar Malechor");
           final Action _function = new Action() {
             public void execute() {
-              FilesWindow.this.showError("Not yet implemented");
+              FilesWindowAppModel _modelObject = FilesWindow.this.getModelObject();
+              GameSystem _gameSystem = _modelObject.getGameSystem();
+              FilesWindowAppModel _modelObject_1 = FilesWindow.this.getModelObject();
+              Villain _selectedVillain = _modelObject_1.getSelectedVillain();
+              CreateVillainAppModel _createVillainAppModel = new CreateVillainAppModel(_gameSystem, _selectedVillain, true);
+              CreateVillainWindow _createVillainWindow = new CreateVillainWindow(FilesWindow.this, _createVillainAppModel);
+              _createVillainWindow.open();
             }
           };
           it.onClick(_function);
@@ -95,8 +107,8 @@ public class FilesWindow extends SimpleWindow<FilesWindowAppModel> {
     return _xblockexpression;
   }
   
-  public Binding<Object, Control, ControlBuilder> createSelectedVillainInformation(final Panel owner) {
-    Binding<Object, Control, ControlBuilder> _xblockexpression = null;
+  public List<Hobbie> createSelectedVillainInformation(final Panel owner) {
+    List<Hobbie> _xblockexpression = null;
     {
       Panel villainInfoPanel = new Panel(owner);
       VerticalLayout _verticalLayout = new VerticalLayout();
@@ -111,11 +123,26 @@ public class FilesWindow extends SimpleWindow<FilesWindowAppModel> {
       _label_3.<Object, ControlBuilder>bindValueToProperty("selectedVillain.sex");
       Label _label_4 = new Label(villainInfoPanel);
       _label_4.setText("Señas Particulares:");
+      List<String> _list = new List<String>(villainInfoPanel);
+      final Procedure1<List<String>> _function = new Procedure1<List<String>>() {
+        public void apply(final List<String> it) {
+          it.<Object, ControlBuilder>bindValueToProperty("selectedSign");
+          it.bindItemsToProperty("selectedVillain.signs");
+          it.setHeight(75);
+        }
+      };
+      ObjectExtensions.<List<String>>operator_doubleArrow(_list, _function);
       Label _label_5 = new Label(villainInfoPanel);
       _label_5.setText("Hobbies:");
-      Table<Hobbie> hobbiesTable = new Table<Hobbie>(villainInfoPanel, Hobbie.class);
-      hobbiesTable.bindItemsToProperty("selectedVillain.hobbies");
-      _xblockexpression = hobbiesTable.<Object, ControlBuilder>bindValueToProperty("selectedHobbie");
+      List<Hobbie> _list_1 = new List<Hobbie>(villainInfoPanel);
+      final Procedure1<List<Hobbie>> _function_1 = new Procedure1<List<Hobbie>>() {
+        public void apply(final List<Hobbie> it) {
+          it.<Object, ControlBuilder>bindValueToProperty("selectedHobbie");
+          it.bindItemsToProperty("selectedVillain.hobbies");
+          it.setHeight(75);
+        }
+      };
+      _xblockexpression = ObjectExtensions.<List<Hobbie>>operator_doubleArrow(_list_1, _function_1);
     }
     return _xblockexpression;
   }

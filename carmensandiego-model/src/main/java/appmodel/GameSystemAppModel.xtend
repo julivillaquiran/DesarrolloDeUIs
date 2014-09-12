@@ -1,7 +1,7 @@
 package appmodel
 
 import org.uqbar.commons.utils.Observable
-import model.Villain
+import villain.Villain
 import model.GameSystem
 
 @Observable

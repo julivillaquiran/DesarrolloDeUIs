@@ -1,9 +1,9 @@
 package application
 
 import org.uqbar.arena.Application
-import view.CreateVillainWindow
 import model.GameSystem
 import appmodel.CreateVillainAppModel
+import villainView.CreateVillainWindow
 
 class CreateVillainApplication extends Application{
 	GameSystem gameSystem = new GameSystem()

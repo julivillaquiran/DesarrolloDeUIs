@@ -5,14 +5,15 @@ import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.WindowOwner
 import appmodel.FilesWindowAppModel
 import org.uqbar.arena.widgets.Label
-import model.Villain
+import villain.Villain
 import org.uqbar.arena.widgets.List
 import org.uqbar.arena.widgets.Button
 import appmodel.CreateVillainAppModel
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.layout.VerticalLayout
-import model.Hobbie
-import org.uqbar.arena.widgets.tables.Table
+import villain.Hobbie
+import org.uqbar.arena.bindings.PropertyAdapter
+import villainView.CreateVillainWindow
 
 class FilesWindow extends SimpleWindow<FilesWindowAppModel>{
 	
@@ -25,9 +26,6 @@ class FilesWindow extends SimpleWindow<FilesWindowAppModel>{
 	}
 	
 	override protected createFormPanel(Panel mainPanel) {
-//		title = "Expedientes"
-//		mainPanel.layout = new VerticalLayout
-//		
 //		new Label(mainPanel).text="ACA VA TODA LA INFORMACION DE LOS EXPEDIENTES"
 	}
 	
@@ -52,17 +50,21 @@ class FilesWindow extends SimpleWindow<FilesWindowAppModel>{
 		new Label(filesPanel).text = "Malechores"
 		new List<Villain>(filesPanel)=>[
 			bindValueToProperty("selectedVillain")
-			bindItemsToProperty("gameSystem.files")//.adapter = new PropertyAdapter(Villain, "name")
+			bindItemsToProperty("gameSystem.files").adapter = new PropertyAdapter(Villain, "name")
+			height = 175
 			]
 		
 		new Button(filesPanel) =>[
 			caption = "Nuevo Malechor"
-			onClick = [ | new CreateVillainWindow(this, new CreateVillainAppModel(modelObject.gameSystem)).open ]
+			onClick = [ | new CreateVillainWindow(this, 
+				new CreateVillainAppModel(modelObject.gameSystem, modelObject.selectedVillain, false)).open ]
 		] 
 		
 		new Button(filesPanel) =>[
 			caption = "Editar Malechor"
-			onClick = [ |showError("Not yet implemented")
+			onClick = [ | new CreateVillainWindow(this, 
+				new CreateVillainAppModel(modelObject.gameSystem, modelObject.selectedVillain, true)).open
+			//showError("Not yet implemented")
 			// new NuevaMateriaWindow(this, this.modelObject.carrera).open 
 			]
 		] 
@@ -73,6 +75,7 @@ class FilesWindow extends SimpleWindow<FilesWindowAppModel>{
 			villainInfoPanel.layout = new VerticalLayout
 			
 			
+			
 		new Label(villainInfoPanel).text = "Nombre:"
 		new Label(villainInfoPanel).bindValueToProperty("selectedVillain.name")
 		
@@ -80,13 +83,19 @@ class FilesWindow extends SimpleWindow<FilesWindowAppModel>{
 		new Label(villainInfoPanel).bindValueToProperty("selectedVillain.sex")
 		
 		new Label(villainInfoPanel).text = "Señas Particulares:"
-		
+		new List<String>(villainInfoPanel)=>[
+			bindValueToProperty("selectedSign")
+			bindItemsToProperty("selectedVillain.signs")
+			height = 75
+			]
 		
 		new Label(villainInfoPanel).text = "Hobbies:"
-		var hobbiesTable = new Table<Hobbie>(villainInfoPanel, Hobbie)
-		hobbiesTable.bindItemsToProperty("selectedVillain.hobbies")
-		hobbiesTable.bindValueToProperty("selectedHobbie")		
-		
+		new List<Hobbie>(villainInfoPanel)=>[
+			bindValueToProperty("selectedHobbie")
+			bindItemsToProperty("selectedVillain.hobbies")
+			height = 75
+			]
+
 	}
 	
 }

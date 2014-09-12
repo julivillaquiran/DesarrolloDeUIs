@@ -2,34 +2,63 @@ package appmodel
 
 import org.uqbar.commons.utils.Observable
 import java.util.Arrays
-import model.Villain
+import villain.Villain
 import model.GameSystem
-import model.Gender
-import model.Hobbie
+import villain.Gender
+import villain.Hobbie
 
 @Observable
 class CreateVillainAppModel {
 	@Property
 	Villain villain
+	@Property
+	Villain selectedVillain
+	int indexOfVillain
 	
 	@Property
 	Hobbie newHobbie
+	@Property
+	Hobbie takenHobbie
+	
+	@Property
+	String newSign
+	@Property
+	String takenSign
 	
 	@Property
 	GameSystem gameSystem
 	
-	new(GameSystem gameSystem){
+	new(GameSystem gameSystem, Villain selectedVillain, boolean edit){
 		this.gameSystem = gameSystem
-		
-		villain = new Villain
+		if(edit)
+			villain = selectedVillain
+		else
+			villain = new Villain
+		this.selectedVillain = selectedVillain
+		this.indexOfVillain = gameSystem.villains.indexOf(selectedVillain)
 	}
 	
 	def addVillain(){
-		gameSystem.addVillains(villain)
+		if(!gameSystem.villains.contains(villain))
+			gameSystem.addVillains(villain)
 	}
 	
-	def void addHobbie() {
-		villain.addHobbies(newHobbie)
+	def addHobbie() {
+		if(!villain.hobbies.contains(newHobbie))
+			villain.addHobbies(newHobbie)
+	}
+	
+	def takeHobbie(){
+		villain.takeHobbies(takenHobbie)
+	}	
+	
+	def addSign(){
+		if(!villain.signs.contains(newSign)&& (newSign!=null))
+			villain.addSigns(newSign)
+	}
+	
+	def takeSign(){
+		villain.takeSigns(takenSign)
 	}
 	
 	def getGender(){

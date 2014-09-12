@@ -1,9 +1,9 @@
 package appmodel
 
 import org.uqbar.commons.utils.Observable
-import model.Villain
+import villain.Villain
 import model.GameSystem
-import model.Hobbie
+import villain.Hobbie
 
 @Observable
 class FilesWindowAppModel {
@@ -15,6 +15,9 @@ class FilesWindowAppModel {
 	
 	@Property
 	Hobbie selectedHobbie
+	
+	@Property
+	String selectedSign
 	
 	new(GameSystem gameSystem){
 		this.gameSystem = gameSystem

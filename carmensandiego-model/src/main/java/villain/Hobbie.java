@@ -1,4 +1,4 @@
-package model;
+package villain;
 
 public enum Hobbie {
 	Fumar,

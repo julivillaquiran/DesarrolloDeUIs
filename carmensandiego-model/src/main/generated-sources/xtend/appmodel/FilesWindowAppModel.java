@@ -1,9 +1,9 @@
 package appmodel;
 
 import model.GameSystem;
-import model.Hobbie;
-import model.Villain;
 import org.uqbar.commons.utils.Observable;
+import villain.Hobbie;
+import villain.Villain;
 
 @Observable
 @SuppressWarnings("all")
@@ -36,6 +36,16 @@ public class FilesWindowAppModel {
   
   public void setSelectedHobbie(final Hobbie selectedHobbie) {
     this._selectedHobbie = selectedHobbie;
+  }
+  
+  private String _selectedSign;
+  
+  public String getSelectedSign() {
+    return this._selectedSign;
+  }
+  
+  public void setSelectedSign(final String selectedSign) {
+    this._selectedSign = selectedSign;
   }
   
   public FilesWindowAppModel(final GameSystem gameSystem) {

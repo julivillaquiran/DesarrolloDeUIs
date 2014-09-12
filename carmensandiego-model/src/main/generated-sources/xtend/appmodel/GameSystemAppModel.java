@@ -2,8 +2,8 @@ package appmodel;
 
 import appmodel.FilesWindowAppModel;
 import model.GameSystem;
-import model.Villain;
 import org.uqbar.commons.utils.Observable;
+import villain.Villain;
 
 @Observable
 @SuppressWarnings("all")

@@ -1,11 +1,11 @@
-package model;
+package villain;
 
 import java.util.List;
-import model.Gender;
-import model.Hobbie;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.uqbar.commons.model.ObservableUtils;
 import org.uqbar.commons.utils.Observable;
+import villain.Gender;
+import villain.Hobbie;
 
 @Observable
 @SuppressWarnings("all")
@@ -40,16 +40,6 @@ public class Villain {
     this._signs = signs;
   }
   
-  private String _newSign;
-  
-  public String getNewSign() {
-    return this._newSign;
-  }
-  
-  public void setNewSign(final String newSign) {
-    this._newSign = newSign;
-  }
-  
   private List<Hobbie> _hobbies = CollectionLiterals.<Hobbie>newArrayList();
   
   public List<Hobbie> getHobbies() {
@@ -67,9 +57,23 @@ public class Villain {
     ObservableUtils.firePropertyChanged(this, "hobbies", _hobbies_1);
   }
   
-  public void addNewSign(final String newSign) {
+  public void takeHobbies(final Hobbie takenHobbie) {
+    List<Hobbie> _hobbies = this.getHobbies();
+    _hobbies.remove(takenHobbie);
+    List<Hobbie> _hobbies_1 = this.getHobbies();
+    ObservableUtils.firePropertyChanged(this, "hobbies", _hobbies_1);
+  }
+  
+  public void addSigns(final String newSign) {
     List<String> _signs = this.getSigns();
     _signs.add(newSign);
+    List<String> _signs_1 = this.getSigns();
+    ObservableUtils.firePropertyChanged(this, "signs", _signs_1);
+  }
+  
+  public void takeSigns(final String takenSign) {
+    List<String> _signs = this.getSigns();
+    _signs.remove(takenSign);
     List<String> _signs_1 = this.getSigns();
     ObservableUtils.firePropertyChanged(this, "signs", _signs_1);
   }

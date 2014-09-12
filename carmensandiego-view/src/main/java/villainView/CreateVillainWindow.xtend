@@ -1,4 +1,4 @@
-package view
+package villainView
 
 import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.windows.WindowOwner
@@ -37,38 +37,52 @@ class CreateVillainWindow extends SimpleWindow<CreateVillainAppModel> {
 			bindValueToProperty("villain.sex")
 		]
 		
-		new Label(mainPanel).text="Hobbies:"
+		//Control over Hobbies property
+		new Label(mainPanel).text="Hobbies asignados:"
 		new List(mainPanel) => [
 			bindItemsToProperty("villain.hobbies")
+			bindValueToProperty("takenHobbie")
 		]
+		new Label(mainPanel).text="Seleccione nuevo hobbie:"
 		new Selector(mainPanel) => [
 			bindItemsToProperty("hobbies")
 			bindValueToProperty("newHobbie")
 		]
-		
 		new Button(mainPanel)=>[
-			caption = "Nuevo Hobbie"
+			caption = "Agregar Hobbie"
 			onClick = [| modelObject.addHobbie ]
 //			onClick = [ | new NewHobbieWindow(this, this.modelObject.villainAppModel).open ]
 		]
-		
-		
-		new Label(mainPanel).text="Señas:"
-//		new TextBox(mainPanel)=>[
-//			bindValueToProperty("villain.signs")
-//			width=200
-//		]
-		
-		new Label(mainPanel).text="Files:"
-		new List(mainPanel) => [
-			bindItemsToProperty("gameSystem.files")
+		new Button(mainPanel)=>[
+			caption = "Quitar Hobbie"
+			onClick = [| modelObject.takeHobbie ]
 		]
+		
+		//Control over Signs property
+		new Label(mainPanel).text="Señas:"
+		new List(mainPanel) => [
+			bindItemsToProperty("villain.signs")
+			bindValueToProperty("takenSign")
+		]
+		new Label(mainPanel).text="Escriba una nueva caracteristica:"
+		var newSign = new TextBox(mainPanel)=>[bindValueToProperty("newSign")]
+		new Button(mainPanel)=>[
+			caption = "Agregar caracteristica"
+			onClick = [| modelObject.addSign ]
+			//add action of clear newSign TextBox, how is done?	
+//			onClick = [ | new NewSignWindow(this, this.modelObject.villainAppModel).open ]
+		]
+		new Button(mainPanel)=>[
+			caption = "Quitar caracteristica"
+			onClick = [| modelObject.takeSign ]
+		]
+		
 		
 		new Button(mainPanel)=>[
 			caption = "Aceptar"
 			onClick = [ |
 				this.modelObject.addVillain
-				//this.close
+				this.close
 			]
 		]
 	}

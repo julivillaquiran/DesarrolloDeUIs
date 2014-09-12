@@ -1,4 +1,4 @@
-package model
+package villain
 
 import org.uqbar.commons.utils.Observable
 import java.util.List
@@ -17,9 +17,6 @@ class Villain {
 	List<String> signs = newArrayList
 	
 	@Property
-	String newSign
-	
-	@Property
 	List<Hobbie> hobbies = newArrayList
 	
 	
@@ -29,12 +26,20 @@ class Villain {
 		ObservableUtils.firePropertyChanged(this,"hobbies", hobbies)
 	}
 	
-	def void addNewSign(String newSign){
+	def void takeHobbies(Hobbie takenHobbie){
+		hobbies.remove(takenHobbie)
+		ObservableUtils.firePropertyChanged(this,"hobbies", hobbies)
+	}
+	
+	
+	def void addSigns(String newSign){
 		signs.add(newSign)
 		ObservableUtils.firePropertyChanged(this,"signs", signs)
 	}
 	
-	
-
+	def takeSigns(String takenSign){
+		signs.remove(takenSign)
+		ObservableUtils.firePropertyChanged(this,"signs", signs)
+	}
 	
 }

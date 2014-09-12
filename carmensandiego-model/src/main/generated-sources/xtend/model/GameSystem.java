@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Case;
 import model.Country;
-import model.Villain;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.uqbar.commons.model.ObservableUtils;
 import org.uqbar.commons.utils.Observable;
+import villain.Villain;
 
 @Observable
 @SuppressWarnings("all")

@@ -1,4 +1,4 @@
-package view;
+package villainView;
 
 import appmodel.CreateVillainAppModel;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
@@ -49,14 +49,17 @@ public class CreateVillainWindow extends SimpleWindow<CreateVillainAppModel> {
     };
     ObjectExtensions.<Selector<Object>>operator_doubleArrow(_selector, _function_1);
     Label _label_2 = new Label(mainPanel);
-    _label_2.setText("Hobbies:");
+    _label_2.setText("Hobbies asignados:");
     List<Object> _list = new List<Object>(mainPanel);
     final Procedure1<List<Object>> _function_2 = new Procedure1<List<Object>>() {
       public void apply(final List<Object> it) {
         it.bindItemsToProperty("villain.hobbies");
+        it.<Object, ControlBuilder>bindValueToProperty("takenHobbie");
       }
     };
     ObjectExtensions.<List<Object>>operator_doubleArrow(_list, _function_2);
+    Label _label_3 = new Label(mainPanel);
+    _label_3.setText("Seleccione nuevo hobbie:");
     Selector<Object> _selector_1 = new Selector<Object>(mainPanel);
     final Procedure1<Selector<Object>> _function_3 = new Procedure1<Selector<Object>>() {
       public void apply(final Selector<Object> it) {
@@ -68,7 +71,7 @@ public class CreateVillainWindow extends SimpleWindow<CreateVillainAppModel> {
     Button _button = new Button(mainPanel);
     final Procedure1<Button> _function_4 = new Procedure1<Button>() {
       public void apply(final Button it) {
-        it.setCaption("Nuevo Hobbie");
+        it.setCaption("Agregar Hobbie");
         final Action _function = new Action() {
           public void execute() {
             CreateVillainAppModel _modelObject = CreateVillainWindow.this.getModelObject();
@@ -79,30 +82,81 @@ public class CreateVillainWindow extends SimpleWindow<CreateVillainAppModel> {
       }
     };
     ObjectExtensions.<Button>operator_doubleArrow(_button, _function_4);
-    Label _label_3 = new Label(mainPanel);
-    _label_3.setText("Señas:");
-    Label _label_4 = new Label(mainPanel);
-    _label_4.setText("Files:");
-    List<Object> _list_1 = new List<Object>(mainPanel);
-    final Procedure1<List<Object>> _function_5 = new Procedure1<List<Object>>() {
-      public void apply(final List<Object> it) {
-        it.bindItemsToProperty("gameSystem.files");
+    Button _button_1 = new Button(mainPanel);
+    final Procedure1<Button> _function_5 = new Procedure1<Button>() {
+      public void apply(final Button it) {
+        it.setCaption("Quitar Hobbie");
+        final Action _function = new Action() {
+          public void execute() {
+            CreateVillainAppModel _modelObject = CreateVillainWindow.this.getModelObject();
+            _modelObject.takeHobbie();
+          }
+        };
+        it.onClick(_function);
       }
     };
-    ObjectExtensions.<List<Object>>operator_doubleArrow(_list_1, _function_5);
-    Button _button_1 = new Button(mainPanel);
-    final Procedure1<Button> _function_6 = new Procedure1<Button>() {
+    ObjectExtensions.<Button>operator_doubleArrow(_button_1, _function_5);
+    Label _label_4 = new Label(mainPanel);
+    _label_4.setText("Señas:");
+    List<Object> _list_1 = new List<Object>(mainPanel);
+    final Procedure1<List<Object>> _function_6 = new Procedure1<List<Object>>() {
+      public void apply(final List<Object> it) {
+        it.bindItemsToProperty("villain.signs");
+        it.<Object, ControlBuilder>bindValueToProperty("takenSign");
+      }
+    };
+    ObjectExtensions.<List<Object>>operator_doubleArrow(_list_1, _function_6);
+    Label _label_5 = new Label(mainPanel);
+    _label_5.setText("Escriba una nueva caracteristica:");
+    TextBox _textBox_1 = new TextBox(mainPanel);
+    final Procedure1<TextBox> _function_7 = new Procedure1<TextBox>() {
+      public void apply(final TextBox it) {
+        it.<Object, ControlBuilder>bindValueToProperty("newSign");
+      }
+    };
+    TextBox newSign = ObjectExtensions.<TextBox>operator_doubleArrow(_textBox_1, _function_7);
+    Button _button_2 = new Button(mainPanel);
+    final Procedure1<Button> _function_8 = new Procedure1<Button>() {
+      public void apply(final Button it) {
+        it.setCaption("Agregar caracteristica");
+        final Action _function = new Action() {
+          public void execute() {
+            CreateVillainAppModel _modelObject = CreateVillainWindow.this.getModelObject();
+            _modelObject.addSign();
+          }
+        };
+        it.onClick(_function);
+      }
+    };
+    ObjectExtensions.<Button>operator_doubleArrow(_button_2, _function_8);
+    Button _button_3 = new Button(mainPanel);
+    final Procedure1<Button> _function_9 = new Procedure1<Button>() {
+      public void apply(final Button it) {
+        it.setCaption("Quitar caracteristica");
+        final Action _function = new Action() {
+          public void execute() {
+            CreateVillainAppModel _modelObject = CreateVillainWindow.this.getModelObject();
+            _modelObject.takeSign();
+          }
+        };
+        it.onClick(_function);
+      }
+    };
+    ObjectExtensions.<Button>operator_doubleArrow(_button_3, _function_9);
+    Button _button_4 = new Button(mainPanel);
+    final Procedure1<Button> _function_10 = new Procedure1<Button>() {
       public void apply(final Button it) {
         it.setCaption("Aceptar");
         final Action _function = new Action() {
           public void execute() {
             CreateVillainAppModel _modelObject = CreateVillainWindow.this.getModelObject();
             _modelObject.addVillain();
+            CreateVillainWindow.this.close();
           }
         };
         it.onClick(_function);
       }
     };
-    ObjectExtensions.<Button>operator_doubleArrow(_button_1, _function_6);
+    ObjectExtensions.<Button>operator_doubleArrow(_button_4, _function_10);
   }
 }
