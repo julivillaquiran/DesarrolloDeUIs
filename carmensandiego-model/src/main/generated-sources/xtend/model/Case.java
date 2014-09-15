@@ -1,7 +1,7 @@
 package model;
 
+import country.Country;
 import java.util.List;
-import model.Country;
 
 @SuppressWarnings("all")
 public class Case {

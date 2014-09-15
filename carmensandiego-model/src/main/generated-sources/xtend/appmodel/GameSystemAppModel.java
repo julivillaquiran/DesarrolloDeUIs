@@ -1,23 +1,13 @@
 package appmodel;
 
 import appmodel.FilesWindowAppModel;
+import appmodel.WorldMapAppModel;
 import model.GameSystem;
 import org.uqbar.commons.utils.Observable;
-import villain.Villain;
 
 @Observable
 @SuppressWarnings("all")
 public class GameSystemAppModel {
-  private Villain _villain;
-  
-  public Villain getVillain() {
-    return this._villain;
-  }
-  
-  public void setVillain(final Villain villain) {
-    this._villain = villain;
-  }
-  
   private GameSystem _gameSystem;
   
   public GameSystem getGameSystem() {
@@ -36,6 +26,16 @@ public class GameSystemAppModel {
   
   public void setFilesWindowAppModel(final FilesWindowAppModel filesWindowAppModel) {
     this._filesWindowAppModel = filesWindowAppModel;
+  }
+  
+  private WorldMapAppModel _worldMapAppModel;
+  
+  public WorldMapAppModel getWorldMapAppModel() {
+    return this._worldMapAppModel;
+  }
+  
+  public void setWorldMapAppModel(final WorldMapAppModel worldMapAppModel) {
+    this._worldMapAppModel = worldMapAppModel;
   }
   
   public GameSystemAppModel(final GameSystem gameSystem) {

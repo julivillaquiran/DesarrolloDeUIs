@@ -28,23 +28,27 @@ class CreateVillainAppModel {
 	@Property
 	GameSystem gameSystem
 	
+	@Property
+	boolean edit
+	
 	new(GameSystem gameSystem, Villain selectedVillain, boolean edit){
 		this.gameSystem = gameSystem
+		this.edit = edit
 		if(edit)
 			villain = selectedVillain
 		else
 			villain = new Villain
-		this.selectedVillain = selectedVillain
+		//this.selectedVillain = selectedVillain
 		this.indexOfVillain = gameSystem.villains.indexOf(selectedVillain)
 	}
 	
 	def addVillain(){
-		if(!gameSystem.villains.contains(villain))
+		if(!gameSystem.villains.contains(villain) && (villain!=null))
 			gameSystem.addVillains(villain)
 	}
 	
-	def addHobbie() {
-		if(!villain.hobbies.contains(newHobbie))
+	def addHobbie(){
+		if(!villain.hobbies.contains(newHobbie) && (newHobbie!=null))
 			villain.addHobbies(newHobbie)
 	}
 	
@@ -53,7 +57,7 @@ class CreateVillainAppModel {
 	}	
 	
 	def addSign(){
-		if(!villain.signs.contains(newSign)&& (newSign!=null))
+		if(!villain.signs.contains(newSign) && (newSign!=null))
 			villain.addSigns(newSign)
 	}
 	

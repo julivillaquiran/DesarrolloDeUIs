@@ -84,43 +84,69 @@ public class CreateVillainAppModel {
     this._gameSystem = gameSystem;
   }
   
+  private boolean _edit;
+  
+  public boolean isEdit() {
+    return this._edit;
+  }
+  
+  public void setEdit(final boolean edit) {
+    this._edit = edit;
+  }
+  
   public CreateVillainAppModel(final GameSystem gameSystem, final Villain selectedVillain, final boolean edit) {
     this.setGameSystem(gameSystem);
+    this.setEdit(edit);
     if (edit) {
       this.setVillain(selectedVillain);
     } else {
       Villain _villain = new Villain();
       this.setVillain(_villain);
     }
-    this.setSelectedVillain(selectedVillain);
     List<Villain> _villains = gameSystem.getVillains();
     int _indexOf = _villains.indexOf(selectedVillain);
     this.indexOfVillain = _indexOf;
   }
   
   public void addVillain() {
+    boolean _and = false;
     GameSystem _gameSystem = this.getGameSystem();
     List<Villain> _villains = _gameSystem.getVillains();
     Villain _villain = this.getVillain();
     boolean _contains = _villains.contains(_villain);
     boolean _not = (!_contains);
-    if (_not) {
-      GameSystem _gameSystem_1 = this.getGameSystem();
+    if (!_not) {
+      _and = false;
+    } else {
       Villain _villain_1 = this.getVillain();
-      _gameSystem_1.addVillains(_villain_1);
+      boolean _notEquals = (!Objects.equal(_villain_1, null));
+      _and = _notEquals;
+    }
+    if (_and) {
+      GameSystem _gameSystem_1 = this.getGameSystem();
+      Villain _villain_2 = this.getVillain();
+      _gameSystem_1.addVillains(_villain_2);
     }
   }
   
   public void addHobbie() {
+    boolean _and = false;
     Villain _villain = this.getVillain();
     List<Hobbie> _hobbies = _villain.getHobbies();
     Hobbie _newHobbie = this.getNewHobbie();
     boolean _contains = _hobbies.contains(_newHobbie);
     boolean _not = (!_contains);
-    if (_not) {
-      Villain _villain_1 = this.getVillain();
+    if (!_not) {
+      _and = false;
+    } else {
       Hobbie _newHobbie_1 = this.getNewHobbie();
-      _villain_1.addHobbies(_newHobbie_1);
+      boolean _notEquals = (!Objects.equal(_newHobbie_1, null));
+      _and = _notEquals;
+    }
+    if (_and) {
+      Villain _villain_1 = this.getVillain();
+      Hobbie _newHobbie_2 = this.getNewHobbie();
+      _villain_1.addHobbies(_newHobbie_2);
     }
   }
   

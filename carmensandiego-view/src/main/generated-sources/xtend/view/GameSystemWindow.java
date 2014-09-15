@@ -32,7 +32,9 @@ public class GameSystemWindow extends SimpleWindow<GameSystemAppModel> {
         it.setCaption("Mapamundi");
         final Action _function = new Action() {
           public void execute() {
-            WorldMapAppModel _worldMapAppModel = new WorldMapAppModel();
+            GameSystemAppModel _modelObject = GameSystemWindow.this.getModelObject();
+            GameSystem _gameSystem = _modelObject.getGameSystem();
+            WorldMapAppModel _worldMapAppModel = new WorldMapAppModel(_gameSystem);
             WorldMapWindow _worldMapWindow = new WorldMapWindow(GameSystemWindow.this, _worldMapAppModel);
             _worldMapWindow.open();
           }

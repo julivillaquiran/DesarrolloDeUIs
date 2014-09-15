@@ -4,13 +4,40 @@ import villain.Villain
 import model.GameSystem
 import villain.Gender
 import villain.Hobbie
+import country.Country
+import country.InterestPlace
+import country.Places
 
 class TestingData {
 	def createGameSystem(){
-		new GameSystem =>[
+		new GameSystem =>[			
 			addVillains(createVillain1("Villano 1"))
 			addVillains(createVillain2("Nastrow Banks"))
 			addVillains(createVillain3("Jhonny Q"))
+			
+			addCountries(createCountry1())
+			addCountries(createCountry2())
+		]
+	}
+	
+
+	
+	def createCountry1() {
+		new Country =>[
+			name = "Afganistan"
+			characteristics.add("Hablan arabe")
+			characteristics.add("Son Islamistas")
+			places.add(new InterestPlace => [name = Places.Banco])			
+		]
+	}
+	
+	def createCountry2() {
+		new Country =>[
+			name = "Inglaterra"
+			characteristics.add("Hablan ingles")
+			characteristics.add("Tienen Reina")
+			places.add(new InterestPlace => [name = Places.Club])
+			places.add(new InterestPlace => [name = Places.Embajada])			
 		]
 	}
 	
@@ -19,7 +46,7 @@ class TestingData {
 			name = villainName
 			sex = Gender.Femenino
 			hobbies.add(Hobbie.Beber)
-			hobbies.add(Hobbie.Fumar)
+			hobbies.add(Hobbie.Fumar)	
 			signs.add("Alta")
 			signs.add("Morena")
 		]

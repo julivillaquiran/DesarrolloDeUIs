@@ -22,7 +22,10 @@ class CreateVillainWindow extends SimpleWindow<CreateVillainAppModel> {
 	}
 	
 	override protected createFormPanel(Panel mainPanel) {
-		title = "Crear Nuevo Villano"
+		if(modelObject.edit)
+			title = "Editar Villano"
+		else
+			title = "Crear Nuevo Villano"
 		mainPanel.layout = new VerticalLayout 
 		
 		new Label(mainPanel).text="Nombre:"
@@ -79,7 +82,10 @@ class CreateVillainWindow extends SimpleWindow<CreateVillainAppModel> {
 		
 		
 		new Button(mainPanel)=>[
-			caption = "Aceptar"
+			if(modelObject.edit)
+			caption = "Terminar Edicion"
+		else
+			caption = "Crear Villano"
 			onClick = [ |
 				this.modelObject.addVillain
 				this.close

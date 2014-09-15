@@ -25,7 +25,13 @@ public class CreateVillainWindow extends SimpleWindow<CreateVillainAppModel> {
   }
   
   protected void createFormPanel(final Panel mainPanel) {
-    this.setTitle("Crear Nuevo Villano");
+    CreateVillainAppModel _modelObject = this.getModelObject();
+    boolean _isEdit = _modelObject.isEdit();
+    if (_isEdit) {
+      this.setTitle("Editar Villano");
+    } else {
+      this.setTitle("Crear Nuevo Villano");
+    }
     VerticalLayout _verticalLayout = new VerticalLayout();
     mainPanel.setLayout(_verticalLayout);
     Label _label = new Label(mainPanel);
@@ -146,7 +152,13 @@ public class CreateVillainWindow extends SimpleWindow<CreateVillainAppModel> {
     Button _button_4 = new Button(mainPanel);
     final Procedure1<Button> _function_10 = new Procedure1<Button>() {
       public void apply(final Button it) {
-        it.setCaption("Aceptar");
+        CreateVillainAppModel _modelObject = CreateVillainWindow.this.getModelObject();
+        boolean _isEdit = _modelObject.isEdit();
+        if (_isEdit) {
+          it.setCaption("Terminar Edicion");
+        } else {
+          it.setCaption("Crear Villano");
+        }
         final Action _function = new Action() {
           public void execute() {
             CreateVillainAppModel _modelObject = CreateVillainWindow.this.getModelObject();

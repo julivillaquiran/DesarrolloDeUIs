@@ -22,17 +22,15 @@ class FilesWindow extends SimpleWindow<FilesWindowAppModel>{
 	}
 	
 	override protected addActions(Panel actionsPanel) {
-		//throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		//This template is not gonna be used)
 	}
 	
 	override protected createFormPanel(Panel mainPanel) {
-//		new Label(mainPanel).text="ACA VA TODA LA INFORMACION DE LOS EXPEDIENTES"
+		//This template is not gonna be used
 	}
 	
 	override protected createMainTemplate(Panel mainPanel) {
-		this.title = "Expedientes"
-		mainPanel.layout = new VerticalLayout
-		
+		this.title = "Expedientes"		
 		
 		var Panel contentPanel = new Panel(mainPanel)
 		contentPanel.layout = new ColumnLayout(2)
@@ -64,8 +62,6 @@ class FilesWindow extends SimpleWindow<FilesWindowAppModel>{
 			caption = "Editar Malechor"
 			onClick = [ | new CreateVillainWindow(this, 
 				new CreateVillainAppModel(modelObject.gameSystem, modelObject.selectedVillain, true)).open
-			//showError("Not yet implemented")
-			// new NuevaMateriaWindow(this, this.modelObject.carrera).open 
 			]
 		] 
 	}

@@ -22,8 +22,7 @@ class GameSystemWindow extends SimpleWindow<GameSystemAppModel> {
 		
 		new Button(actionsPanel)=>[
 			caption = "Mapamundi"
-			onClick = [ | new WorldMapWindow(this, new WorldMapAppModel).open
-			]
+			onClick = [ | new WorldMapWindow(this, new WorldMapAppModel(modelObject.gameSystem)).open	]
 		]
 		
 		new Button(actionsPanel)=>[

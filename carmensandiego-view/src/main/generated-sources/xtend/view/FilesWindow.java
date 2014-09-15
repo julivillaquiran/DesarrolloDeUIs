@@ -37,8 +37,6 @@ public class FilesWindow extends SimpleWindow<FilesWindowAppModel> {
   
   protected void createMainTemplate(final Panel mainPanel) {
     this.setTitle("Expedientes");
-    VerticalLayout _verticalLayout = new VerticalLayout();
-    mainPanel.setLayout(_verticalLayout);
     Panel contentPanel = new Panel(mainPanel);
     ColumnLayout _columnLayout = new ColumnLayout(2);
     contentPanel.setLayout(_columnLayout);
