@@ -29,7 +29,7 @@ class Country {
 	}
 	
 	def addPlaces(InterestPlace place) {
-		if(places.size != 3)
+		if(places.size <= 2)
 			places.add(place)
 		ObservableUtils.firePropertyChanged(this,"places", places)
 	}

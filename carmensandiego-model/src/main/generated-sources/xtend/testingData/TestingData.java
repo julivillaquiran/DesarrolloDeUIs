@@ -3,6 +3,7 @@ package testingData;
 import country.Country;
 import country.InterestPlace;
 import country.Places;
+import gameCase.Case;
 import java.util.List;
 import model.GameSystem;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
@@ -13,8 +14,9 @@ import villain.Villain;
 
 @SuppressWarnings("all")
 public class TestingData {
+  private GameSystem gameSystem = new GameSystem();
+  
   public GameSystem createGameSystem() {
-    GameSystem _gameSystem = new GameSystem();
     final Procedure1<GameSystem> _function = new Procedure1<GameSystem>() {
       public void apply(final GameSystem it) {
         Villain _createVillain1 = TestingData.this.createVillain1("Villano 1");
@@ -29,7 +31,8 @@ public class TestingData {
         it.addCountries(_createCountry2);
       }
     };
-    return ObjectExtensions.<GameSystem>operator_doubleArrow(_gameSystem, _function);
+    return ObjectExtensions.<GameSystem>operator_doubleArrow(
+      this.gameSystem, _function);
   }
   
   public Country createCountry1() {
@@ -142,5 +145,14 @@ public class TestingData {
       }
     };
     return ObjectExtensions.<Villain>operator_doubleArrow(_villain, _function);
+  }
+  
+  public void saveData(final GameSystem model) {
+    List<Country> _worldMap = model.getWorldMap();
+    this.gameSystem.setWorldMap(_worldMap);
+    List<Villain> _files = model.getFiles();
+    this.gameSystem.setFiles(_files);
+    List<Case> _cases = model.getCases();
+    this.gameSystem.setCases(_cases);
   }
 }

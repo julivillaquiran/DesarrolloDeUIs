@@ -3,9 +3,9 @@ package model;
 import country.Country;
 import country.InterestPlace;
 import country.Places;
+import gameCase.Case;
 import java.util.ArrayList;
 import java.util.List;
-import model.Case;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
@@ -55,6 +55,8 @@ public class GameSystem {
   public void setInterestPlaces(final List<InterestPlace> interestPlaces) {
     this._interestPlaces = interestPlaces;
   }
+  
+  private Case newCase;
   
   public GameSystem() {
     ArrayList<Villain> _newArrayList = CollectionLiterals.<Villain>newArrayList();

@@ -66,8 +66,8 @@ public class Country {
   public void addPlaces(final InterestPlace place) {
     List<InterestPlace> _places = this.getPlaces();
     int _size = _places.size();
-    boolean _notEquals = (_size != 3);
-    if (_notEquals) {
+    boolean _lessEqualsThan = (_size <= 2);
+    if (_lessEqualsThan) {
       List<InterestPlace> _places_1 = this.getPlaces();
       _places_1.add(place);
     }

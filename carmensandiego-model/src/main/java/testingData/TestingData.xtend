@@ -7,10 +7,13 @@ import villain.Hobbie
 import country.Country
 import country.InterestPlace
 import country.Places
+import appmodel.GameSystemAppModel
 
 class TestingData {
+	
+	GameSystem gameSystem = new GameSystem
 	def createGameSystem(){
-		new GameSystem =>[			
+		gameSystem =>[			
 			addVillains(createVillain1("Villano 1"))
 			addVillains(createVillain2("Nastrow Banks"))
 			addVillains(createVillain3("Jhonny Q"))
@@ -70,6 +73,12 @@ class TestingData {
 			signs.add("Likes Bling")
 			signs.add("Heavy Gun")
 		]
+	}
+	
+	def saveData(GameSystem model){
+		gameSystem.worldMap = model.worldMap
+		gameSystem.files = model.files
+		gameSystem.cases = model.cases
 	}
 	
 	

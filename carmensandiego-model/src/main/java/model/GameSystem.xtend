@@ -7,6 +7,7 @@ import villain.Villain
 import country.Country
 import country.InterestPlace
 import country.Places
+import gameCase.Case
 
 @Observable
 class GameSystem {
@@ -22,6 +23,9 @@ class GameSystem {
 	
 	@Property
 	List<InterestPlace> interestPlaces
+	
+	Case newCase
+	
 	
 		
 	new(){ 
@@ -62,5 +66,12 @@ class GameSystem {
 		interestPlaces.add(place)
 		ObservableUtils.firePropertyChanged(this,"interestPlaces", interestPlaces)
 	}
+	
+//	def generateCase(){
+//		val index = 0 as int
+//		index = files.size
+//		newCase = new Case
+//		newCase.caseVillain(files.r)
+//	}
 	
 }
