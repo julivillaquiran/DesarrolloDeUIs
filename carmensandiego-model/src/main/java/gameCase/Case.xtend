@@ -5,27 +5,28 @@ import country.Country
 import villain.Villain
 import java.util.List
 
+
 @Observable
 class Case {
 	@Property
 	List<Country> escapeRoute
 	
 	@Property
-	Villain caseVillain
+	Villain responsable
 	
-	new(){
+	@Property
+	String caseName
+	
+	@Property
+	String description
+	
+	@Property
+	Country currentCountry
+	
+	
+	new(Villain robber){
+		responsable = robber
 		escapeRoute = newArrayList
-		generateEscapeRoute()
 	}
-	
-	def generateEscapeRoute() {
 		
-	}
-	
-	
-	def description(){
-		return ("Esta es la descripcion del caso")
-	}
-	
-	
 }

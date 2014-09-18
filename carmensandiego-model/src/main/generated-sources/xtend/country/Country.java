@@ -2,7 +2,10 @@ package country;
 
 import country.InterestPlace;
 import java.util.List;
+import model.GameSystem;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.uqbar.commons.model.ObservableUtils;
 import org.uqbar.commons.utils.Observable;
 
@@ -94,5 +97,18 @@ public class Country {
     _connections.remove(country);
     List<Country> _connections_1 = this.getConnections();
     ObservableUtils.firePropertyChanged(this, "connections", _connections_1);
+  }
+  
+  public List<Country> getPossibleConnections(final GameSystem system) {
+    List<Country> _worldMap = system.getWorldMap();
+    final Function1<Country, Boolean> _function = new Function1<Country, Boolean>() {
+      public Boolean apply(final Country c) {
+        List<Country> _connections = Country.this.getConnections();
+        boolean _contains = _connections.contains(c);
+        return Boolean.valueOf((!_contains));
+      }
+    };
+    Iterable<Country> _filter = IterableExtensions.<Country>filter(_worldMap, _function);
+    return IterableExtensions.<Country>toList(_filter);
   }
 }

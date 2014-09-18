@@ -22,21 +22,18 @@ import org.uqbar.lacar.ui.model.bindings.Binding;
 
 @SuppressWarnings("all")
 public class CreateCountryWindow extends SimpleWindow<CreateCountryAppModel> {
-  public CreateCountryWindow(final WindowOwner parent, final CreateCountryAppModel model) {
+  private String buttonCaption;
+  
+  public CreateCountryWindow(final WindowOwner parent, final CreateCountryAppModel model, final String title, final String buttonCaption) {
     super(parent, model);
+    this.setTitle(title);
+    this.buttonCaption = buttonCaption;
   }
   
   protected void addActions(final Panel actionsPanel) {
   }
   
   protected void createFormPanel(final Panel mainPanel) {
-    CreateCountryAppModel _modelObject = this.getModelObject();
-    boolean _isEdit = _modelObject.isEdit();
-    if (_isEdit) {
-      this.setTitle("Editar Pais");
-    } else {
-      this.setTitle("Crear Nuevo Pais");
-    }
     VerticalLayout _verticalLayout = new VerticalLayout();
     mainPanel.setLayout(_verticalLayout);
     Label _label = new Label(mainPanel);
@@ -64,7 +61,7 @@ public class CreateCountryWindow extends SimpleWindow<CreateCountryAppModel> {
     Selector<Object> _selector = new Selector<Object>(mainPanel);
     final Procedure1<Selector<Object>> _function_2 = new Procedure1<Selector<Object>>() {
       public void apply(final Selector<Object> it) {
-        Binding<?, Selector<Object>, ListBuilder<Object>> _bindItemsToProperty = it.bindItemsToProperty("gameSystem.worldMap");
+        Binding<?, Selector<Object>, ListBuilder<Object>> _bindItemsToProperty = it.bindItemsToProperty("possibleConnections");
         PropertyAdapter _propertyAdapter = new PropertyAdapter(Country.class, "name");
         _bindItemsToProperty.setAdapter(_propertyAdapter);
         it.<Object, ControlBuilder>bindValueToProperty("newConnection");
@@ -201,13 +198,7 @@ public class CreateCountryWindow extends SimpleWindow<CreateCountryAppModel> {
     Button _button_6 = new Button(mainPanel);
     final Procedure1<Button> _function_13 = new Procedure1<Button>() {
       public void apply(final Button it) {
-        CreateCountryAppModel _modelObject = CreateCountryWindow.this.getModelObject();
-        boolean _isEdit = _modelObject.isEdit();
-        if (_isEdit) {
-          it.setCaption("Terminar Edicion");
-        } else {
-          it.setCaption("Crear Pais");
-        }
+        it.setCaption(CreateCountryWindow.this.buttonCaption);
         final Action _function = new Action() {
           public void execute() {
             CreateCountryAppModel _modelObject = CreateCountryWindow.this.getModelObject();

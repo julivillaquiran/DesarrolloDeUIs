@@ -3,6 +3,7 @@ package country
 import org.uqbar.commons.model.ObservableUtils
 import org.uqbar.commons.utils.Observable
 import java.util.List
+import model.GameSystem
 
 @Observable
 class Country {
@@ -47,6 +48,10 @@ class Country {
 	def takeConnections(Country country) {
 		connections.remove(country)
 		ObservableUtils.firePropertyChanged(this,"connections", connections)
+	}
+	
+	def getPossibleConnections(GameSystem system) {
+		system.worldMap.filter[c | !connections.contains(c)].toList
 	}
 	
 }

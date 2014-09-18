@@ -120,7 +120,7 @@ public class CreateVillainWindow extends SimpleWindow<CreateVillainAppModel> {
         it.<Object, ControlBuilder>bindValueToProperty("newSign");
       }
     };
-    TextBox newSign = ObjectExtensions.<TextBox>operator_doubleArrow(_textBox_1, _function_7);
+    ObjectExtensions.<TextBox>operator_doubleArrow(_textBox_1, _function_7);
     Button _button_2 = new Button(mainPanel);
     final Procedure1<Button> _function_8 = new Procedure1<Button>() {
       public void apply(final Button it) {
@@ -129,6 +129,8 @@ public class CreateVillainWindow extends SimpleWindow<CreateVillainAppModel> {
           public void execute() {
             CreateVillainAppModel _modelObject = CreateVillainWindow.this.getModelObject();
             _modelObject.addSign();
+            CreateVillainAppModel _modelObject_1 = CreateVillainWindow.this.getModelObject();
+            _modelObject_1.setNewSign(null);
           }
         };
         it.onClick(_function);

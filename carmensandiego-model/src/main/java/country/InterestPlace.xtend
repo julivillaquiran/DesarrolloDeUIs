@@ -8,6 +8,9 @@ class InterestPlace {
 	@Property
 	Places name	
 	
+	@Property
+	boolean isHere
+	
 	def messageIs(){
 		switch name{
 		
@@ -19,7 +22,7 @@ class InterestPlace {
 				return ("Esta en la Biblioteca")
 			}
 			case Club: {
-				return ("Este en el Club")
+				return ("Esta en el Club")
 			}
 			case Embajada: {
 				return ("Esta en la Embajada")
@@ -31,17 +34,17 @@ class InterestPlace {
 		switch name{
 		
 			case Banco: {
-				 return ("En este Pais, pero no en el Banco")
+				 ("En este Pais, pero no en el Banco")
 				
 			}
 			case Biblioteca: {
-				return ("En este Pais, pero no en la Biblioteca")
+				("En este Pais, pero no en la Biblioteca")
 			}
 			case Club: {
-				return ("En este Pais, pero no en el Club")
+				("En este Pais, pero no en el Club")
 			}
 			case Embajada: {
-				return ("En este Pais, pero no en la Embajada")
+				("En este Pais, pero no en la Embajada")
 			}
 		}
 	}
@@ -50,7 +53,7 @@ class InterestPlace {
 		switch name{
 		
 			case Banco: {
-				 return ("Paso por este Banco")
+				 "Paso por este Banco"
 				
 			}
 			case Biblioteca: {
@@ -82,6 +85,14 @@ class InterestPlace {
 				return ("Nunca le hemos visto en esta Embajada")
 			}
 		}
+	}
+	
+	override equals(Object obj) {
+		obj instanceof InterestPlace && (obj as InterestPlace).name == name
+	}
+	
+	override hashCode() {
+		name.hashCode
 	}
 	
 }

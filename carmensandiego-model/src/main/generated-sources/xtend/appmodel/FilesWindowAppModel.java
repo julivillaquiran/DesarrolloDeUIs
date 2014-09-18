@@ -2,7 +2,6 @@ package appmodel;
 
 import model.GameSystem;
 import org.uqbar.commons.utils.Observable;
-import villain.Hobbie;
 import villain.Villain;
 
 @Observable
@@ -28,27 +27,18 @@ public class FilesWindowAppModel {
     this._selectedVillain = selectedVillain;
   }
   
-  private Hobbie _selectedHobbie;
+  private boolean _toEdit;
   
-  public Hobbie getSelectedHobbie() {
-    return this._selectedHobbie;
+  public boolean isToEdit() {
+    return this._toEdit;
   }
   
-  public void setSelectedHobbie(final Hobbie selectedHobbie) {
-    this._selectedHobbie = selectedHobbie;
+  public void setToEdit(final boolean toEdit) {
+    this._toEdit = toEdit;
   }
   
-  private String _selectedSign;
-  
-  public String getSelectedSign() {
-    return this._selectedSign;
-  }
-  
-  public void setSelectedSign(final String selectedSign) {
-    this._selectedSign = selectedSign;
-  }
-  
-  public FilesWindowAppModel(final GameSystem gameSystem) {
+  public FilesWindowAppModel(final GameSystem gameSystem, final boolean toEdit) {
+    this.setToEdit(toEdit);
     this.setGameSystem(gameSystem);
   }
 }

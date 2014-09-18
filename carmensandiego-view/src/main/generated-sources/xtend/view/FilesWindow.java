@@ -59,7 +59,13 @@ public class FilesWindow extends SimpleWindow<FilesWindowAppModel> {
           Binding<?, Selector<Villain>, ListBuilder<Villain>> _bindItemsToProperty = it.bindItemsToProperty("gameSystem.files");
           PropertyAdapter _propertyAdapter = new PropertyAdapter(Villain.class, "name");
           _bindItemsToProperty.setAdapter(_propertyAdapter);
-          it.setHeight(175);
+          FilesWindowAppModel _modelObject = FilesWindow.this.getModelObject();
+          boolean _isToEdit = _modelObject.isToEdit();
+          if (_isToEdit) {
+            it.setHeight(175);
+          } else {
+            it.setHeight(300);
+          }
         }
       };
       ObjectExtensions.<List<Villain>>operator_doubleArrow(_list, _function);
@@ -67,6 +73,7 @@ public class FilesWindow extends SimpleWindow<FilesWindowAppModel> {
       final Procedure1<Button> _function_1 = new Procedure1<Button>() {
         public void apply(final Button it) {
           it.setCaption("Nuevo Malechor");
+          it.<ControlBuilder>bindVisibleToProperty("toEdit");
           final Action _function = new Action() {
             public void execute() {
               FilesWindowAppModel _modelObject = FilesWindow.this.getModelObject();
@@ -86,6 +93,7 @@ public class FilesWindow extends SimpleWindow<FilesWindowAppModel> {
       final Procedure1<Button> _function_2 = new Procedure1<Button>() {
         public void apply(final Button it) {
           it.setCaption("Editar Malechor");
+          it.<ControlBuilder>bindVisibleToProperty("toEdit");
           final Action _function = new Action() {
             public void execute() {
               FilesWindowAppModel _modelObject = FilesWindow.this.getModelObject();
@@ -124,7 +132,6 @@ public class FilesWindow extends SimpleWindow<FilesWindowAppModel> {
       List<String> _list = new List<String>(villainInfoPanel);
       final Procedure1<List<String>> _function = new Procedure1<List<String>>() {
         public void apply(final List<String> it) {
-          it.<Object, ControlBuilder>bindValueToProperty("selectedSign");
           it.bindItemsToProperty("selectedVillain.signs");
           it.setHeight(75);
         }
@@ -135,7 +142,6 @@ public class FilesWindow extends SimpleWindow<FilesWindowAppModel> {
       List<Hobbie> _list_1 = new List<Hobbie>(villainInfoPanel);
       final Procedure1<List<Hobbie>> _function_1 = new Procedure1<List<Hobbie>>() {
         public void apply(final List<Hobbie> it) {
-          it.<Object, ControlBuilder>bindValueToProperty("selectedHobbie");
           it.bindItemsToProperty("selectedVillain.hobbies");
           it.setHeight(75);
         }

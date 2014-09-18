@@ -13,7 +13,6 @@ class CreateVillainAppModel {
 	Villain villain
 	@Property
 	Villain selectedVillain
-	int indexOfVillain
 	
 	@Property
 	Hobbie newHobbie
@@ -38,8 +37,6 @@ class CreateVillainAppModel {
 			villain = selectedVillain
 		else
 			villain = new Villain
-		//this.selectedVillain = selectedVillain
-		this.indexOfVillain = gameSystem.villains.indexOf(selectedVillain)
 	}
 	
 	def addVillain(){
@@ -48,8 +45,7 @@ class CreateVillainAppModel {
 	}
 	
 	def addHobbie(){
-		if(!villain.hobbies.contains(newHobbie) && (newHobbie!=null))
-			villain.addHobbies(newHobbie)
+		villain.addHobbies(newHobbie)
 	}
 	
 	def takeHobbie(){

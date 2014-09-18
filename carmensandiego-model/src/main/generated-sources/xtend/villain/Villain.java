@@ -1,5 +1,6 @@
 package villain;
 
+import com.google.common.base.Objects;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.uqbar.commons.model.ObservableUtils;
@@ -51,10 +52,22 @@ public class Villain {
   }
   
   public void addHobbies(final Hobbie newHobbie) {
+    boolean _and = false;
     List<Hobbie> _hobbies = this.getHobbies();
-    _hobbies.add(newHobbie);
+    boolean _contains = _hobbies.contains(newHobbie);
+    if (!_contains) {
+      _and = false;
+    } else {
+      boolean _notEquals = (!Objects.equal(newHobbie, null));
+      _and = _notEquals;
+    }
+    if (_and) {
+      return;
+    }
     List<Hobbie> _hobbies_1 = this.getHobbies();
-    ObservableUtils.firePropertyChanged(this, "hobbies", _hobbies_1);
+    _hobbies_1.add(newHobbie);
+    List<Hobbie> _hobbies_2 = this.getHobbies();
+    ObservableUtils.firePropertyChanged(this, "hobbies", _hobbies_2);
   }
   
   public void takeHobbies(final Hobbie takenHobbie) {

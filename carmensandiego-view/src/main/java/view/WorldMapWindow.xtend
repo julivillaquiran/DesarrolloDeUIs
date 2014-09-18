@@ -51,18 +51,21 @@ class WorldMapWindow extends SimpleWindow<WorldMapAppModel> {
 			bindItemsToProperty("gameSystem.worldMap").adapter = new PropertyAdapter(Country, "name")
 			height = 175
 			]
-		
+			
 		new Button(worldMapPanel) =>[
 			caption = "Nuevo Pais"
-			onClick = [ | new CreateCountryWindow(this, 
-				new CreateCountryAppModel(modelObject.gameSystem, modelObject.selectedCountry, false)).open
+			onClick = [ | 
+				new CreateCountryWindow(this, 
+				new CreateCountryAppModel(modelObject.gameSystem, new Country()), "Crear Nuevo Pais", "Crear Pais").open
 			]
 		]
 		
 		new Button(worldMapPanel) =>[
 			caption = "Editar Pais"
-			onClick = [ | new CreateCountryWindow(this, 
-				new CreateCountryAppModel(modelObject.gameSystem, modelObject.selectedCountry, true)).open
+			onClick = [ | 
+				if(modelObject.selectedCountry != null)
+					new CreateCountryWindow(this, 
+						new CreateCountryAppModel(modelObject.gameSystem, modelObject.selectedCountry), "Editar Pais", "Terminar Edicion").open
 			]
 		]
 		

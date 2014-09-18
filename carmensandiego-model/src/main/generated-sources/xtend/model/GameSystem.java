@@ -56,8 +56,6 @@ public class GameSystem {
     this._interestPlaces = interestPlaces;
   }
   
-  private Case newCase;
-  
   public GameSystem() {
     ArrayList<Villain> _newArrayList = CollectionLiterals.<Villain>newArrayList();
     this.setFiles(_newArrayList);
@@ -143,5 +141,12 @@ public class GameSystem {
     _interestPlaces.add(place);
     List<InterestPlace> _interestPlaces_1 = this.getInterestPlaces();
     ObservableUtils.firePropertyChanged(this, "interestPlaces", _interestPlaces_1);
+  }
+  
+  public void addCases(final Case newCase) {
+    List<Case> _cases = this.getCases();
+    _cases.add(newCase);
+    List<Case> _cases_1 = this.getCases();
+    ObservableUtils.firePropertyChanged(this, "cases", _cases_1);
   }
 }

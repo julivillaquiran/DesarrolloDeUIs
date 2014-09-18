@@ -11,14 +11,15 @@ import view.GameSystemWindow;
 public class MainApplication extends Application {
   private GameSystem gameSystem = new GameSystem();
   
+  private GameSystemAppModel model = new GameSystemAppModel(this.gameSystem);
+  
   protected Window<?> createMainWindow() {
     GameSystemWindow _xblockexpression = null;
     {
-      GameSystemAppModel model = new GameSystemAppModel(this.gameSystem);
       TestingData _testingData = new TestingData();
       GameSystem _createGameSystem = _testingData.createGameSystem();
-      model.setGameSystem(_createGameSystem);
-      _xblockexpression = new GameSystemWindow(this, model);
+      this.model.setGameSystem(_createGameSystem);
+      _xblockexpression = new GameSystemWindow(this, this.model);
     }
     return _xblockexpression;
   }

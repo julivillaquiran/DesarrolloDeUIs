@@ -10,6 +10,7 @@ import org.uqbar.arena.widgets.Button
 import org.uqbar.arena.layout.VerticalLayout
 import appmodel.FilesWindowAppModel
 import appmodel.WorldMapAppModel
+import appmodel.NewCaseWindowAppModel
 
 class GameSystemWindow extends SimpleWindow<GameSystemAppModel> {
 	
@@ -21,13 +22,19 @@ class GameSystemWindow extends SimpleWindow<GameSystemAppModel> {
 		actionsPanel.layout = new HorizontalLayout
 		
 		new Button(actionsPanel)=>[
+			caption = "Nuevo Caso"
+			onClick = [ | new NewCaseWindow(this, new NewCaseWindowAppModel(modelObject.gameSystem)).open
+			]
+		]
+		
+		new Button(actionsPanel)=>[
 			caption = "Mapamundi"
 			onClick = [ | new WorldMapWindow(this, new WorldMapAppModel(modelObject.gameSystem)).open	]
 		]
 		
 		new Button(actionsPanel)=>[
 			caption = "Expedientes"
-			onClick = [ | new FilesWindow(this, new FilesWindowAppModel(modelObject.gameSystem)).open
+			onClick = [ | new FilesWindow(this, new FilesWindowAppModel(modelObject.gameSystem, true)).open
 			]
 		]
 	}

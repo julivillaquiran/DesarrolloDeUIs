@@ -68,11 +68,13 @@ class CreateVillainWindow extends SimpleWindow<CreateVillainAppModel> {
 			bindValueToProperty("takenSign")
 		]
 		new Label(mainPanel).text="Escriba una nueva caracteristica:"
-		var newSign = new TextBox(mainPanel)=>[bindValueToProperty("newSign")]
+		new TextBox(mainPanel)=>[bindValueToProperty("newSign")]
 		new Button(mainPanel)=>[
 			caption = "Agregar caracteristica"
-			onClick = [| modelObject.addSign ]
-			//add action of clear newSign TextBox, how is done?	
+			onClick = [| 
+				modelObject.addSign
+				modelObject.newSign = null
+			]
 //			onClick = [ | new NewSignWindow(this, this.modelObject.villainAppModel).open ]
 		]
 		new Button(mainPanel)=>[

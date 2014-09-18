@@ -15,9 +15,12 @@ import country.Country
 import country.InterestPlace
 
 class CreateCountryWindow extends SimpleWindow<CreateCountryAppModel>{
-		
-	new(WindowOwner parent, CreateCountryAppModel model) {
+	String buttonCaption
+	
+	new(WindowOwner parent, CreateCountryAppModel model, String title, String buttonCaption) {
 		super(parent, model)
+		this.title = title
+		this.buttonCaption = buttonCaption
 	}
 	
 	override protected addActions(Panel actionsPanel) {
@@ -25,10 +28,6 @@ class CreateCountryWindow extends SimpleWindow<CreateCountryAppModel>{
 	}
 	
 	override protected createFormPanel(Panel mainPanel) {
-		if(modelObject.edit)
-			title = "Editar Pais"
-		else
-			title = "Crear Nuevo Pais"
 		mainPanel.layout = new VerticalLayout 
 		
 		new Label(mainPanel).text="Nombre:"
@@ -43,7 +42,8 @@ class CreateCountryWindow extends SimpleWindow<CreateCountryAppModel>{
 			bindValueToProperty("takenConnection")
 		]
 		new Selector(mainPanel) => [
-			bindItemsToProperty("gameSystem.worldMap").adapter = new PropertyAdapter(Country, "name")
+//			bindItemsToProperty("gameSystem.worldMap").adapter = new PropertyAdapter(Country, "name")
+			bindItemsToProperty("possibleConnections").adapter = new PropertyAdapter(Country, "name")
 			bindValueToProperty("newConnection")
 		]
 		new Button(mainPanel)=>[
@@ -101,10 +101,7 @@ class CreateCountryWindow extends SimpleWindow<CreateCountryAppModel>{
 		
 		
 		new Button(mainPanel)=>[
-			if(modelObject.edit)
-				caption = "Terminar Edicion"
-			else
-				caption = "Crear Pais"
+			caption = buttonCaption
 			onClick = [ |
 				this.modelObject.addCountry
 				this.close

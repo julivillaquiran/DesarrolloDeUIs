@@ -2,6 +2,7 @@ package view;
 
 import appmodel.FilesWindowAppModel;
 import appmodel.GameSystemAppModel;
+import appmodel.NewCaseWindowAppModel;
 import appmodel.WorldMapAppModel;
 import model.GameSystem;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
@@ -15,6 +16,7 @@ import org.uqbar.arena.windows.SimpleWindow;
 import org.uqbar.arena.windows.WindowOwner;
 import org.uqbar.lacar.ui.model.Action;
 import view.FilesWindow;
+import view.NewCaseWindow;
 import view.WorldMapWindow;
 
 @SuppressWarnings("all")
@@ -29,6 +31,23 @@ public class GameSystemWindow extends SimpleWindow<GameSystemAppModel> {
     Button _button = new Button(actionsPanel);
     final Procedure1<Button> _function = new Procedure1<Button>() {
       public void apply(final Button it) {
+        it.setCaption("Nuevo Caso");
+        final Action _function = new Action() {
+          public void execute() {
+            GameSystemAppModel _modelObject = GameSystemWindow.this.getModelObject();
+            GameSystem _gameSystem = _modelObject.getGameSystem();
+            NewCaseWindowAppModel _newCaseWindowAppModel = new NewCaseWindowAppModel(_gameSystem);
+            NewCaseWindow _newCaseWindow = new NewCaseWindow(GameSystemWindow.this, _newCaseWindowAppModel);
+            _newCaseWindow.open();
+          }
+        };
+        it.onClick(_function);
+      }
+    };
+    ObjectExtensions.<Button>operator_doubleArrow(_button, _function);
+    Button _button_1 = new Button(actionsPanel);
+    final Procedure1<Button> _function_1 = new Procedure1<Button>() {
+      public void apply(final Button it) {
         it.setCaption("Mapamundi");
         final Action _function = new Action() {
           public void execute() {
@@ -42,16 +61,16 @@ public class GameSystemWindow extends SimpleWindow<GameSystemAppModel> {
         it.onClick(_function);
       }
     };
-    ObjectExtensions.<Button>operator_doubleArrow(_button, _function);
-    Button _button_1 = new Button(actionsPanel);
-    final Procedure1<Button> _function_1 = new Procedure1<Button>() {
+    ObjectExtensions.<Button>operator_doubleArrow(_button_1, _function_1);
+    Button _button_2 = new Button(actionsPanel);
+    final Procedure1<Button> _function_2 = new Procedure1<Button>() {
       public void apply(final Button it) {
         it.setCaption("Expedientes");
         final Action _function = new Action() {
           public void execute() {
             GameSystemAppModel _modelObject = GameSystemWindow.this.getModelObject();
             GameSystem _gameSystem = _modelObject.getGameSystem();
-            FilesWindowAppModel _filesWindowAppModel = new FilesWindowAppModel(_gameSystem);
+            FilesWindowAppModel _filesWindowAppModel = new FilesWindowAppModel(_gameSystem, true);
             FilesWindow _filesWindow = new FilesWindow(GameSystemWindow.this, _filesWindowAppModel);
             _filesWindow.open();
           }
@@ -59,7 +78,7 @@ public class GameSystemWindow extends SimpleWindow<GameSystemAppModel> {
         it.onClick(_function);
       }
     };
-    ObjectExtensions.<Button>operator_doubleArrow(_button_1, _function_1);
+    ObjectExtensions.<Button>operator_doubleArrow(_button_2, _function_2);
   }
   
   protected void createFormPanel(final Panel mainPanel) {

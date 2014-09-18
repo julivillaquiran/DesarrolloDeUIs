@@ -20,27 +20,49 @@ public class Case {
     this._escapeRoute = escapeRoute;
   }
   
-  private Villain _caseVillain;
+  private Villain _responsable;
   
-  public Villain getCaseVillain() {
-    return this._caseVillain;
+  public Villain getResponsable() {
+    return this._responsable;
   }
   
-  public void setCaseVillain(final Villain caseVillain) {
-    this._caseVillain = caseVillain;
+  public void setResponsable(final Villain responsable) {
+    this._responsable = responsable;
   }
   
-  public Case() {
+  private String _caseName;
+  
+  public String getCaseName() {
+    return this._caseName;
+  }
+  
+  public void setCaseName(final String caseName) {
+    this._caseName = caseName;
+  }
+  
+  private String _description;
+  
+  public String getDescription() {
+    return this._description;
+  }
+  
+  public void setDescription(final String description) {
+    this._description = description;
+  }
+  
+  private Country _currentCountry;
+  
+  public Country getCurrentCountry() {
+    return this._currentCountry;
+  }
+  
+  public void setCurrentCountry(final Country currentCountry) {
+    this._currentCountry = currentCountry;
+  }
+  
+  public Case(final Villain robber) {
+    this.setResponsable(robber);
     ArrayList<Country> _newArrayList = CollectionLiterals.<Country>newArrayList();
     this.setEscapeRoute(_newArrayList);
-    this.generateEscapeRoute();
-  }
-  
-  public Object generateEscapeRoute() {
-    return null;
-  }
-  
-  public String description() {
-    return "Esta es la descripcion del caso";
   }
 }

@@ -2,6 +2,7 @@ package view;
 
 import appmodel.CreateCountryAppModel;
 import appmodel.WorldMapAppModel;
+import com.google.common.base.Objects;
 import country.Country;
 import countryView.CreateCountryWindow;
 import model.GameSystem;
@@ -71,10 +72,9 @@ public class WorldMapWindow extends SimpleWindow<WorldMapAppModel> {
             public void execute() {
               WorldMapAppModel _modelObject = WorldMapWindow.this.getModelObject();
               GameSystem _gameSystem = _modelObject.getGameSystem();
-              WorldMapAppModel _modelObject_1 = WorldMapWindow.this.getModelObject();
-              Country _selectedCountry = _modelObject_1.getSelectedCountry();
-              CreateCountryAppModel _createCountryAppModel = new CreateCountryAppModel(_gameSystem, _selectedCountry, false);
-              CreateCountryWindow _createCountryWindow = new CreateCountryWindow(WorldMapWindow.this, _createCountryAppModel);
+              Country _country = new Country();
+              CreateCountryAppModel _createCountryAppModel = new CreateCountryAppModel(_gameSystem, _country);
+              CreateCountryWindow _createCountryWindow = new CreateCountryWindow(WorldMapWindow.this, _createCountryAppModel, "Crear Nuevo Pais", "Crear Pais");
               _createCountryWindow.open();
             }
           };
@@ -89,12 +89,17 @@ public class WorldMapWindow extends SimpleWindow<WorldMapAppModel> {
           final Action _function = new Action() {
             public void execute() {
               WorldMapAppModel _modelObject = WorldMapWindow.this.getModelObject();
-              GameSystem _gameSystem = _modelObject.getGameSystem();
-              WorldMapAppModel _modelObject_1 = WorldMapWindow.this.getModelObject();
-              Country _selectedCountry = _modelObject_1.getSelectedCountry();
-              CreateCountryAppModel _createCountryAppModel = new CreateCountryAppModel(_gameSystem, _selectedCountry, true);
-              CreateCountryWindow _createCountryWindow = new CreateCountryWindow(WorldMapWindow.this, _createCountryAppModel);
-              _createCountryWindow.open();
+              Country _selectedCountry = _modelObject.getSelectedCountry();
+              boolean _notEquals = (!Objects.equal(_selectedCountry, null));
+              if (_notEquals) {
+                WorldMapAppModel _modelObject_1 = WorldMapWindow.this.getModelObject();
+                GameSystem _gameSystem = _modelObject_1.getGameSystem();
+                WorldMapAppModel _modelObject_2 = WorldMapWindow.this.getModelObject();
+                Country _selectedCountry_1 = _modelObject_2.getSelectedCountry();
+                CreateCountryAppModel _createCountryAppModel = new CreateCountryAppModel(_gameSystem, _selectedCountry_1);
+                CreateCountryWindow _createCountryWindow = new CreateCountryWindow(WorldMapWindow.this, _createCountryAppModel, "Editar Pais", "Terminar Edicion");
+                _createCountryWindow.open();
+              }
             }
           };
           it.onClick(_function);

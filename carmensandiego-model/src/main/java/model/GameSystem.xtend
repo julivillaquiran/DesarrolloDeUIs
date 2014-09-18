@@ -24,7 +24,6 @@ class GameSystem {
 	@Property
 	List<InterestPlace> interestPlaces
 	
-	Case newCase
 	
 	
 		
@@ -34,6 +33,8 @@ class GameSystem {
 		cases = newArrayList
 		fillInterestPlaces()
 		}
+	
+	
 	
 	def fillInterestPlaces() {
 		interestPlaces = newArrayList
@@ -67,11 +68,10 @@ class GameSystem {
 		ObservableUtils.firePropertyChanged(this,"interestPlaces", interestPlaces)
 	}
 	
-//	def generateCase(){
-//		val index = 0 as int
-//		index = files.size
-//		newCase = new Case
-//		newCase.caseVillain(files.r)
-//	}
 	
+	def addCases(Case newCase){
+		//newCase.generateEscapeRoute(worldMap)
+		cases.add(newCase)
+		ObservableUtils.firePropertyChanged(this,"cases", cases)
+	}
 }

@@ -49,17 +49,22 @@ class FilesWindow extends SimpleWindow<FilesWindowAppModel>{
 		new List<Villain>(filesPanel)=>[
 			bindValueToProperty("selectedVillain")
 			bindItemsToProperty("gameSystem.files").adapter = new PropertyAdapter(Villain, "name")
-			height = 175
+			if(modelObject.toEdit)
+				height = 175
+			else
+				height = 300
 			]
 		
 		new Button(filesPanel) =>[
 			caption = "Nuevo Malechor"
+			bindVisibleToProperty("toEdit")
 			onClick = [ | new CreateVillainWindow(this, 
 				new CreateVillainAppModel(modelObject.gameSystem, modelObject.selectedVillain, false)).open ]
 		] 
 		
 		new Button(filesPanel) =>[
 			caption = "Editar Malechor"
+			bindVisibleToProperty("toEdit")
 			onClick = [ | new CreateVillainWindow(this, 
 				new CreateVillainAppModel(modelObject.gameSystem, modelObject.selectedVillain, true)).open
 			]
@@ -80,14 +85,12 @@ class FilesWindow extends SimpleWindow<FilesWindowAppModel>{
 		
 		new Label(villainInfoPanel).text = "Señas Particulares:"
 		new List<String>(villainInfoPanel)=>[
-			bindValueToProperty("selectedSign")
 			bindItemsToProperty("selectedVillain.signs")
 			height = 75
 			]
 		
 		new Label(villainInfoPanel).text = "Hobbies:"
 		new List<Hobbie>(villainInfoPanel)=>[
-			bindValueToProperty("selectedHobbie")
 			bindItemsToProperty("selectedVillain.hobbies")
 			height = 75
 			]

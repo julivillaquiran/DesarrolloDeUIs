@@ -32,8 +32,6 @@ public class CreateVillainAppModel {
     this._selectedVillain = selectedVillain;
   }
   
-  private int indexOfVillain;
-  
   private Hobbie _newHobbie;
   
   public Hobbie getNewHobbie() {
@@ -103,9 +101,6 @@ public class CreateVillainAppModel {
       Villain _villain = new Villain();
       this.setVillain(_villain);
     }
-    List<Villain> _villains = gameSystem.getVillains();
-    int _indexOf = _villains.indexOf(selectedVillain);
-    this.indexOfVillain = _indexOf;
   }
   
   public void addVillain() {
@@ -130,24 +125,9 @@ public class CreateVillainAppModel {
   }
   
   public void addHobbie() {
-    boolean _and = false;
     Villain _villain = this.getVillain();
-    List<Hobbie> _hobbies = _villain.getHobbies();
     Hobbie _newHobbie = this.getNewHobbie();
-    boolean _contains = _hobbies.contains(_newHobbie);
-    boolean _not = (!_contains);
-    if (!_not) {
-      _and = false;
-    } else {
-      Hobbie _newHobbie_1 = this.getNewHobbie();
-      boolean _notEquals = (!Objects.equal(_newHobbie_1, null));
-      _and = _notEquals;
-    }
-    if (_and) {
-      Villain _villain_1 = this.getVillain();
-      Hobbie _newHobbie_2 = this.getNewHobbie();
-      _villain_1.addHobbies(_newHobbie_2);
-    }
+    _villain.addHobbies(_newHobbie);
   }
   
   public void takeHobbie() {

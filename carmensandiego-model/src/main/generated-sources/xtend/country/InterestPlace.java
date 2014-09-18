@@ -1,5 +1,6 @@
 package country;
 
+import com.google.common.base.Objects;
 import country.Places;
 import org.uqbar.commons.utils.Observable;
 
@@ -16,6 +17,16 @@ public class InterestPlace {
     this._name = name;
   }
   
+  private boolean _isHere;
+  
+  public boolean isIsHere() {
+    return this._isHere;
+  }
+  
+  public void setIsHere(final boolean isHere) {
+    this._isHere = isHere;
+  }
+  
   public String messageIs() {
     Places _name = this.getName();
     if (_name != null) {
@@ -25,7 +36,7 @@ public class InterestPlace {
         case Biblioteca:
           return "Esta en la Biblioteca";
         case Club:
-          return "Este en el Club";
+          return "Esta en el Club";
         case Embajada:
           return "Esta en la Embajada";
         default:
@@ -36,30 +47,37 @@ public class InterestPlace {
   }
   
   public String messageFinal() {
+    String _switchResult = null;
     Places _name = this.getName();
     if (_name != null) {
       switch (_name) {
         case Banco:
-          return "En este Pais, pero no en el Banco";
+          _switchResult = "En este Pais, pero no en el Banco";
+          break;
         case Biblioteca:
-          return "En este Pais, pero no en la Biblioteca";
+          _switchResult = "En este Pais, pero no en la Biblioteca";
+          break;
         case Club:
-          return "En este Pais, pero no en el Club";
+          _switchResult = "En este Pais, pero no en el Club";
+          break;
         case Embajada:
-          return "En este Pais, pero no en la Embajada";
+          _switchResult = "En este Pais, pero no en la Embajada";
+          break;
         default:
           break;
       }
     }
-    return null;
+    return _switchResult;
   }
   
   public String messageFuge() {
+    String _switchResult = null;
     Places _name = this.getName();
     if (_name != null) {
       switch (_name) {
         case Banco:
-          return "Paso por este Banco";
+          _switchResult = "Paso por este Banco";
+          break;
         case Biblioteca:
           return "Paso por esta Biblioteca";
         case Club:
@@ -70,7 +88,7 @@ public class InterestPlace {
           break;
       }
     }
-    return null;
+    return _switchResult;
   }
   
   public String messageWrong() {
@@ -90,5 +108,23 @@ public class InterestPlace {
       }
     }
     return null;
+  }
+  
+  public boolean equals(final Object obj) {
+    boolean _and = false;
+    if (!(obj instanceof InterestPlace)) {
+      _and = false;
+    } else {
+      Places _name = ((InterestPlace) obj).getName();
+      Places _name_1 = this.getName();
+      boolean _equals = Objects.equal(_name, _name_1);
+      _and = _equals;
+    }
+    return _and;
+  }
+  
+  public int hashCode() {
+    Places _name = this.getName();
+    return _name.hashCode();
   }
 }

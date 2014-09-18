@@ -22,6 +22,8 @@ class Villain {
 	
 	
 	def void addHobbies(Hobbie newHobbie) {
+		if(hobbies.contains(newHobbie) && (newHobbie!=null))
+			return;
 		hobbies.add(newHobbie)
 		ObservableUtils.firePropertyChanged(this,"hobbies", hobbies)
 	}

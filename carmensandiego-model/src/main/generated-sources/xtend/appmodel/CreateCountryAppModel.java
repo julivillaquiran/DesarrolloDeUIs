@@ -6,7 +6,6 @@ import country.InterestPlace;
 import java.util.List;
 import model.GameSystem;
 import org.uqbar.commons.utils.Observable;
-import villain.Villain;
 
 @Observable
 @SuppressWarnings("all")
@@ -20,18 +19,6 @@ public class CreateCountryAppModel {
   public void setCountry(final Country country) {
     this._country = country;
   }
-  
-  private Country _selectedCountry;
-  
-  public Country getSelectedCountry() {
-    return this._selectedCountry;
-  }
-  
-  public void setSelectedCountry(final Country selectedCountry) {
-    this._selectedCountry = selectedCountry;
-  }
-  
-  private int indexOfCountry;
   
   private String _newCharacteristic;
   
@@ -93,16 +80,6 @@ public class CreateCountryAppModel {
     this._takenConnection = takenConnection;
   }
   
-  private List<Country> _possibleConnections;
-  
-  public List<Country> getPossibleConnections() {
-    return this._possibleConnections;
-  }
-  
-  public void setPossibleConnections(final List<Country> possibleConnections) {
-    this._possibleConnections = possibleConnections;
-  }
-  
   private GameSystem _gameSystem;
   
   public GameSystem getGameSystem() {
@@ -113,40 +90,37 @@ public class CreateCountryAppModel {
     this._gameSystem = gameSystem;
   }
   
-  private boolean _edit;
-  
-  public boolean isEdit() {
-    return this._edit;
-  }
-  
-  public void setEdit(final boolean edit) {
-    this._edit = edit;
-  }
-  
-  public CreateCountryAppModel(final GameSystem gameSystem, final Country selectedCountry, final boolean edit) {
+  public CreateCountryAppModel(final GameSystem gameSystem, final Country selectedCountry) {
     this.setGameSystem(gameSystem);
-    this.setEdit(edit);
-    if (edit) {
-      this.setCountry(selectedCountry);
-    } else {
-      Country _country = new Country();
-      this.setCountry(_country);
-    }
-    List<Villain> _villains = gameSystem.getVillains();
-    int _indexOf = _villains.indexOf(selectedCountry);
-    this.indexOfCountry = _indexOf;
+    this.setCountry(selectedCountry);
+    this.getPossibleConnections();
+  }
+  
+  public List<Country> getPossibleConnections() {
+    Country _country = this.getCountry();
+    GameSystem _gameSystem = this.getGameSystem();
+    return _country.getPossibleConnections(_gameSystem);
   }
   
   public void addCountry() {
+    boolean _and = false;
     GameSystem _gameSystem = this.getGameSystem();
     List<Country> _worldMap = _gameSystem.getWorldMap();
     Country _country = this.getCountry();
     boolean _contains = _worldMap.contains(_country);
     boolean _not = (!_contains);
-    if (_not) {
-      GameSystem _gameSystem_1 = this.getGameSystem();
+    if (!_not) {
+      _and = false;
+    } else {
       Country _country_1 = this.getCountry();
-      _gameSystem_1.addCountries(_country_1);
+      String _name = _country_1.getName();
+      boolean _notEquals = (!Objects.equal(_name, null));
+      _and = _notEquals;
+    }
+    if (_and) {
+      GameSystem _gameSystem_1 = this.getGameSystem();
+      Country _country_2 = this.getCountry();
+      _gameSystem_1.addCountries(_country_2);
     }
   }
   
