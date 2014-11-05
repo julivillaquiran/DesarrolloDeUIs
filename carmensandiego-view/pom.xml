@@ -6,6 +6,10 @@
   <name>carmensandiego-view</name>
   <description>View controller using arena for the game "Where is Carmen Sandiego".</description>
   
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  
   <parent>
     <groupId>org.uqbar-project</groupId>
     <artifactId>uqbar-xtend-parent</artifactId>

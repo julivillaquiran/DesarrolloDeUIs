@@ -17,7 +17,8 @@ class ArrestWarrentDialogAppModel {
 	}
 	
 	def sendWarrent(){
-		solveCaseWindowAppModel.captureOrder = warrent	
+		if(warrent!=null)
+			solveCaseWindowAppModel.captureOrder = warrent	
 	}
 	
 }

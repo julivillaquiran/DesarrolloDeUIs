@@ -34,25 +34,25 @@ class SolveCaseWindow extends SimpleWindow<SolveCaseWindowAppModel>{
 		var title = new String("Resolviendo " + modelObject.thisCase.caseName)
 		this.title = title
 		
-		new Label(mainPanel).text = "Ruta de escape:"
-		new Label(mainPanel).bindValueToProperty("thisCase.escapeRoute.size")
-		new List(mainPanel)=>[
-			bindItemsToProperty("thisCase.escapeRoute").adapter = new PropertyAdapter(Country, "name")
-			height = 50
-		]
-		var temp2 = new String(modelObject.thisCase.responsable.name)
-		new Label(mainPanel).text = temp2
-		var temp = new String(modelObject.thisCase.escapeRoute.get(2).name)
-		new Label(mainPanel).text = temp
-		
-		var temp1 = new String
-		if(modelObject.thisCase.escapeRoute.get(2).places.get(0).isHere)
-			temp1 ="En la Biblioteca"
-		else if(modelObject.thisCase.escapeRoute.get(2).places.get(1).isHere)
-			temp1 ="En la Embajada"
-		else if(modelObject.thisCase.escapeRoute.get(2).places.get(2).isHere)
-			temp1 ="En el Club"
-		new Label(mainPanel).text = temp1
+//		new Label(mainPanel).text = "Ruta de escape:"
+//		new Label(mainPanel).bindValueToProperty("thisCase.escapeRoute.size")
+//		new List(mainPanel)=>[
+//			bindItemsToProperty("thisCase.escapeRoute").adapter = new PropertyAdapter(Country, "name")
+//			height = 50
+//		]
+//		var temp2 = new String(modelObject.thisCase.responsable.name)
+//		new Label(mainPanel).text = temp2
+//		var temp = new String(modelObject.thisCase.escapeRoute.get(2).name)
+//		new Label(mainPanel).text = temp
+//		
+//		var temp1 = new String
+//		if(modelObject.thisCase.escapeRoute.get(2).places.get(0).isHere)
+//			temp1 ="En la Biblioteca"
+//		else if(modelObject.thisCase.escapeRoute.get(2).places.get(1).isHere)
+//			temp1 ="En la Embajada"
+//		else if(modelObject.thisCase.escapeRoute.get(2).places.get(2).isHere)
+//			temp1 ="En el Club"
+//		new Label(mainPanel).text = temp1
 		
 		
 		
@@ -148,7 +148,7 @@ class SolveCaseWindow extends SimpleWindow<SolveCaseWindowAppModel>{
 	}
 	
 	
-	def placesButtons(Panel panel) {
+	def placesButtons(Panel panel) { 
 		var Panel placesButtonsPanel = new Panel(panel)
 		placesButtonsPanel.layout = new VerticalLayout
 		
@@ -163,7 +163,7 @@ class SolveCaseWindow extends SimpleWindow<SolveCaseWindowAppModel>{
 		] 
 		
 		new Button(placesButtonsPanel) =>[
-			caption = "Lugar 2"
+			bindCaptionToProperty("thosePlaces1.name")
 			onClick = [ | 
 				modelObject.throwMessageThosePlaces1
 				new MessageDialog(this, modelObject).open
@@ -171,7 +171,7 @@ class SolveCaseWindow extends SimpleWindow<SolveCaseWindowAppModel>{
 		] 
 		
 		new Button(placesButtonsPanel) =>[
-			caption = "Lugar 3"
+			bindCaptionToProperty("thosePlaces2.name")
 			onClick = [ | 
 				modelObject.throwMessageThosePlaces2
 				new MessageDialog(this, modelObject).open

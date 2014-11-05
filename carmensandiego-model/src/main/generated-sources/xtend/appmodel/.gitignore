@@ -10,3 +10,14 @@
 /.ArrestWarrentDialogAppModel.java._trace
 /.TravelDialogAppModel.java._trace
 /.TravelWindowAppModel.java._trace
+/ArrestWarrentDialogAppModel.java
+/CreateCountryAppModel.java
+/CreateVillainAppModel.java
+/FilesWindowAppModel.java
+/GameSystemAppModel.java
+/NewCaseWindowAppModel.java
+/SolveCaseWindowAppModel.java
+/TravelDialogAppModel.java
+/TravelWindowAppModel.java
+/VillainAppModel.java
+/WorldMapAppModel.java

@@ -8,7 +8,6 @@ import cases.ArrestWarrentDialog;
 import cases.MessageDialog;
 import cases.TravelWindow;
 import country.Country;
-import country.InterestPlace;
 import gameCase.Case;
 import model.GameSystem;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
@@ -28,7 +27,6 @@ import org.uqbar.lacar.ui.model.ControlBuilder;
 import org.uqbar.lacar.ui.model.ListBuilder;
 import org.uqbar.lacar.ui.model.bindings.Binding;
 import view.FilesWindow;
-import villain.Villain;
 
 @SuppressWarnings("all")
 public class SolveCaseWindow extends SimpleWindow<SolveCaseWindowAppModel> {
@@ -49,70 +47,6 @@ public class SolveCaseWindow extends SimpleWindow<SolveCaseWindowAppModel> {
     String _plus = ("Resolviendo " + _caseName);
     String title = new String(_plus);
     this.setTitle(title);
-    Label _label = new Label(mainPanel);
-    _label.setText("Ruta de escape:");
-    Label _label_1 = new Label(mainPanel);
-    _label_1.<Object, ControlBuilder>bindValueToProperty("thisCase.escapeRoute.size");
-    List<Object> _list = new List<Object>(mainPanel);
-    final Procedure1<List<Object>> _function = new Procedure1<List<Object>>() {
-      public void apply(final List<Object> it) {
-        Binding<?, Selector<Object>, ListBuilder<Object>> _bindItemsToProperty = it.bindItemsToProperty("thisCase.escapeRoute");
-        PropertyAdapter _propertyAdapter = new PropertyAdapter(Country.class, "name");
-        _bindItemsToProperty.setAdapter(_propertyAdapter);
-        it.setHeight(50);
-      }
-    };
-    ObjectExtensions.<List<Object>>operator_doubleArrow(_list, _function);
-    SolveCaseWindowAppModel _modelObject_1 = this.getModelObject();
-    Case _thisCase_1 = _modelObject_1.getThisCase();
-    Villain _responsable = _thisCase_1.getResponsable();
-    String _name = _responsable.getName();
-    String temp2 = new String(_name);
-    Label _label_2 = new Label(mainPanel);
-    _label_2.setText(temp2);
-    SolveCaseWindowAppModel _modelObject_2 = this.getModelObject();
-    Case _thisCase_2 = _modelObject_2.getThisCase();
-    java.util.List<Country> _escapeRoute = _thisCase_2.getEscapeRoute();
-    Country _get = _escapeRoute.get(2);
-    String _name_1 = _get.getName();
-    String temp = new String(_name_1);
-    Label _label_3 = new Label(mainPanel);
-    _label_3.setText(temp);
-    String temp1 = new String();
-    SolveCaseWindowAppModel _modelObject_3 = this.getModelObject();
-    Case _thisCase_3 = _modelObject_3.getThisCase();
-    java.util.List<Country> _escapeRoute_1 = _thisCase_3.getEscapeRoute();
-    Country _get_1 = _escapeRoute_1.get(2);
-    java.util.List<InterestPlace> _places = _get_1.getPlaces();
-    InterestPlace _get_2 = _places.get(0);
-    boolean _isIsHere = _get_2.isIsHere();
-    if (_isIsHere) {
-      temp1 = "En la Biblioteca";
-    } else {
-      SolveCaseWindowAppModel _modelObject_4 = this.getModelObject();
-      Case _thisCase_4 = _modelObject_4.getThisCase();
-      java.util.List<Country> _escapeRoute_2 = _thisCase_4.getEscapeRoute();
-      Country _get_3 = _escapeRoute_2.get(2);
-      java.util.List<InterestPlace> _places_1 = _get_3.getPlaces();
-      InterestPlace _get_4 = _places_1.get(1);
-      boolean _isIsHere_1 = _get_4.isIsHere();
-      if (_isIsHere_1) {
-        temp1 = "En la Embajada";
-      } else {
-        SolveCaseWindowAppModel _modelObject_5 = this.getModelObject();
-        Case _thisCase_5 = _modelObject_5.getThisCase();
-        java.util.List<Country> _escapeRoute_3 = _thisCase_5.getEscapeRoute();
-        Country _get_5 = _escapeRoute_3.get(2);
-        java.util.List<InterestPlace> _places_2 = _get_5.getPlaces();
-        InterestPlace _get_6 = _places_2.get(2);
-        boolean _isIsHere_2 = _get_6.isIsHere();
-        if (_isIsHere_2) {
-          temp1 = "En el Club";
-        }
-      }
-    }
-    Label _label_4 = new Label(mainPanel);
-    _label_4.setText(temp1);
     Panel contentPanel = new Panel(mainPanel);
     VerticalLayout _verticalLayout = new VerticalLayout();
     contentPanel.setLayout(_verticalLayout);
@@ -261,7 +195,7 @@ public class SolveCaseWindow extends SimpleWindow<SolveCaseWindowAppModel> {
       Button _button_1 = new Button(placesButtonsPanel);
       final Procedure1<Button> _function_1 = new Procedure1<Button>() {
         public void apply(final Button it) {
-          it.setCaption("Lugar 2");
+          it.bindCaptionToProperty("thosePlaces1.name");
           final Action _function = new Action() {
             public void execute() {
               SolveCaseWindowAppModel _modelObject = SolveCaseWindow.this.getModelObject();
@@ -278,7 +212,7 @@ public class SolveCaseWindow extends SimpleWindow<SolveCaseWindowAppModel> {
       Button _button_2 = new Button(placesButtonsPanel);
       final Procedure1<Button> _function_2 = new Procedure1<Button>() {
         public void apply(final Button it) {
-          it.setCaption("Lugar 3");
+          it.bindCaptionToProperty("thosePlaces2.name");
           final Action _function = new Action() {
             public void execute() {
               SolveCaseWindowAppModel _modelObject = SolveCaseWindow.this.getModelObject();

@@ -45,6 +45,7 @@ class CreateVillainAppModel {
 	}
 	
 	def addHobbie(){
+		if(!villain.hobbies.contains(newHobbie) && (newHobbie!=null))
 		villain.addHobbies(newHobbie)
 	}
 	
